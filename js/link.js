@@ -108,7 +108,7 @@ function sendData()
 
     if ((search_input.length == 0) && (selected_locations.length == 0) && (selected_prices.length == 0) && (selected_ratings.length == 0) && (search_input_advanced.length == 0) && (selected_main_types.length != 0) && (selected_sub_types.length == 0) && (selected_locations_advanced.length == 0) && (selected_prices_advanced.length == 0) && (selected_ratings_advanced.length == 0) && (openTime.length == 0)) {
 
-        window.location = "./public/map.html";
+        window.location = "./map.html";
 
     }
     else {
@@ -135,7 +135,7 @@ function sendData()
             //console.log(packed);
             //document.data.data.value = packed;
             //document.data.submit();
-            window.location.href = "./public/map.html?" + packed;
+            window.location.href = "/map.html?" + packed;
         }
         if ((search_input_advanced.length != 0) || (selected_main_types.length != 0) || (selected_sub_types.length != 0) || (selected_locations_advanced.length != 0) || (selected_prices_advanced.length != 0) || (selected_ratings_advanced.length != 0) || (openTime.length != 0)) {
             var dataAdvanced = new Array();
@@ -159,7 +159,7 @@ function sendData()
             //console.log(packed);
             //document.dataAdvanced.data.value = packed;
             //document.dataAdvanced.submit();
-            window.location = "./public/map.html?" + packed;
+            window.location = "/map.html?" + packed;
         }
     }
 }

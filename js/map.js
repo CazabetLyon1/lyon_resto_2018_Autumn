@@ -12,8 +12,6 @@
     }
     console.log(filterData);
 
-
-
     // Creation of a loader icon
 
     var loaderBackground = document.createElement("div");
@@ -66,11 +64,8 @@
     };
 
     xobj.send(null);
-
-
-
-
 }
+
 
 /**
  * Sets attributes of the progress-bar.
@@ -773,11 +768,30 @@ function mapInitialisation(userCoordinates) {
 
         if (feature.properties['place_id'] != null) {
 
-            popups.push(createPopupForSymbol(feature));
+            var popup = new mapboxgl.Popup();
+
+            popup = createPopupForSymbol(feature);
 
             createInfoContentHTML(feature.properties);
 
             displayContent('info');
+
+            /* Close popup while closing info-content */
+            var closesecondSidebar = document.getElementById("close-secondSidebar");
+
+            closesecondSidebar.onclick = function () {
+                popup.remove();
+            };
+
+            /* Close info-content while closing popup */
+            var closePopup = document.getElementsByClassName("mapboxgl-popup-close-button")[0];
+
+            closePopup.addEventListener('click',function(){
+
+                console.log("closed");
+
+                closeSecondSidebar();
+            });
         }
 
     });
@@ -817,6 +831,9 @@ function mapInitialisation(userCoordinates) {
         popup.remove();
 
     });
+
+
+
 
     // Creation of user marker on map
     googlePlacesAPIService = new google.maps.places.PlacesService(document.createElement('div'));
@@ -3042,7 +3059,7 @@ function loadAllJSON() {
  */
 function loadBarsJSON() {
 
-    console.log("Retrieving Bars JSON...")
+    console.log("Retreiving Bars JSON...")
 
     var xobj = new XMLHttpRequest();
 
@@ -3065,8 +3082,6 @@ function loadBarsJSON() {
     };
 
     xobj.send(null);
-
-
 
 }
 

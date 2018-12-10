@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Interactive map of Lyon</title>
+
+    <!-- To have responsive Bootstrap elements -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Adding image to logo -->
+    <link rel="shortcut icon" href="Assets/homeIconBlue.png" />
+
+    <!-- Don't change the order else it won't work -->
+
+    <!-- Latest compiled and minified CSS (Bootstrap) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+    <!-- CSS for Bootstrap toggle -->
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <!-- JS for Bootstrap toggle -->
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+    <!-- Boostrap multiple select -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+
+    <!-- Datetime picker -->
+    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+
+    <!-- for slider buttons -->
+    <!-- https://github.com/kleinejan/titatoggle/tree/master/dist -->
+    <link href="css/titatoggle-dist.css" rel="stylesheet">
+
+    <!-- our CSS -->
+    <link rel="stylesheet" type="text/css" href="css/Styles.css">
+    <link rel="stylesheet" type="text/css" href="css/sidebar.css">
+
+    <!-- Mapbox -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+
+    <!-- Mapbox geocoder -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.css' type='text/css'/>
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.3/mapbox-gl-directions.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.3/mapbox-gl-directions.css' type='text/css' />
+    <div id="map">
+
+    <!-- Google Places -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPv7VFQeI_dNWfE-Y8IXIywMzEzSkNd28&libraries=places"></script>
+
+
+    <!-- Turf.js plugin -->
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+
+    <!-- Moment.js -->
+    <script src='https://momentjs.com/downloads/moment.js'></script>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.3/mapbox-gl-directions.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.3/mapbox-gl-directions.css' type='text/css' />
+
+    <!-- fonts-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Patua One' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet'>
+    <link href="//fonts.googleapis.com/css?family=Mr+De+Haviland"  rel='stylesheet'>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans" rel='stylesheet'>
+    <link href="//fonts.googleapis.com/css?family=Arvo" rel='stylesheet'>
+    <link href="//fonts.googleapis.com/css?family=Playfair+Display" rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Alegreya Sans SC' rel='stylesheet'>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+
+    <script src="js/sidebar.js"></script>
+
+</head>
+
+<body class="container-fluid">
+
+    <div id="second">
+        <?php include("static/sidebar.html"); ?>
+        <div class="wrapper">
+            <!-- First sidebar which can be opened/closed by a button  -->
+            <nav id="sidebar" aria-expanded="false">
+                <div class="sidebar-header">
+                    <a class="fas fa-user-circle" id="user"></a>
+                </div>
+                <ul class="list-unstyled components">
+                    <li id="info">
+                        <a class="fas fa-info-circle"  aria-hidden="true"></a>
+                        <p>INFO</p>
+                    </li>
+                    <li id="filter" >
+                        <a class="fas fa-filter" aria-hidden="true"></a>
+                        <p>FILTER</p>
+                    </li>
+                    <li id="setting">
+                        <a class="fa fa-cog"  aria-hidden="true"></a>
+                        <p>SETTINGS</p>
+                    </li>
+                    <li id="contact">
+                        <a class="fas fa-address-book" aria-hidden="true"></a>
+                        <p>CONTACT</p>
+                    </li>
+                </ul>
+                <div class="sidebar-footer">
+                    <img src="Img/1_edit.png" onclick="window.location.href='./index.html'">
+                </div>
+            </nav>
+
+            <!-- Second sidebar which can be accessed from the first one -->
+            <nav id="second-sidebar" aria-expanded="false">
+                <i class="fa fa-times" id="close-secondSidebar" aria-expanded="true"></i>
+
+
+                <!---------- Info content ------------->
+                <div id="info-content">
+                </div>
+
+                <!---------- Filter content ------------->
+                <div id="filter-content">
+                    <!---
+                    <label for="currencyContainer">Price</label>
+                    <div class="containerButtons" id="currencyContainer">
+                        <button id="priceButton1" type="button" class="btnPrice btn"><i class="fas fa-euro-sign"></i></button>
+                        <button id="priceButton2" type="button" class="btnPrice btn"><i class="fas fa-euro-sign"></i><i class="fas fa-euro-sign"></i></button>
+                        <button id="priceButton3" type="button" class="btnPrice btn"><i class="fas fa-euro-sign"></i><i class="fas fa-euro-sign"></i><i class="fas fa-euro-sign"></i></button>
+                        <button id="priceButton4" type="button" class="btnPrice btn"><i class="fas fa-euro-sign"></i><i class="fas fa-euro-sign"></i><i class="fas fa-euro-sign"></i><i class="fas fa-euro-sign"></i></button>
+                        <button id="resetButton" type="button" class="btnRemove btn" data-toggle="tooltip" data-placement="bottom" title="Reset currency filter"><i class="fa fa-times"></i></button>
+                    </div>
+
+                    <label for="starContainer">Rating</label>
+                    <div class="containerButtons" id="starContainer">
+                        <button type="button" id="starButton1" class="btnStar btn"><span class="fa fa-star"></span></button>
+                        <button type="button" id="starButton2" class="btnStar btn"><span class="fa fa-star"></span></button>
+                        <button type="button" id="starButton3" class="btnStar btn"><span class="fa fa-star"></span></button>
+                        <button type="button" id="starButton4" class="btnStar btn"><span class="fa fa-star"></span></button>
+                        <button type="button" id="starButton5" class="btnStar btn"><span class="fa fa-star"></span></button>
+                        <button id="resetButton" type="button" class="btnRemove btn" data-toggle="tooltip" data-placement="bottom" title="Reset stars filter"><i class="fa fa-times"></i></button>
+                    </div>-->
+                    <!------Location---->
+                    <div class="filter-item">
+                        <div class="search-input">
+                            <input type="search" id="search" placeholder="Search..." />
+                            <span class="fa fa-search" id="searchIcon"></span>
+                        </div>
+                    </div>
+                    <!------Location---->
+                    <div class="filter-item">
+                        <select class="selectpicker show-tick" id="location" multiple title="Location" multiple data-selected-text-format="count > 2" data-hide-disabled="true">
+                            <optgroup label="Department">
+                                <option style="color:white;" value="69001">Lyon 1</option>
+                                <option style="color:white;" value="69002">Lyon 2</option>
+                                <option style="color:white;" value="69003">Lyon 3</option>
+                                <option style="color:white;" value="69004">Lyon 4</option>
+                                <option style="color:white;" value="69005">Lyon 5</option>
+                                <option style="color:white;" value="69006">Lyon 6</option>
+                                <option style="color:white;" value="69007">Lyon 7</option>
+                                <option style="color:white;" value="69008">Lyon 8</option>
+                                <option style="color:white;" value="69009">Lyon 9</option>
+                                <option style="color:white;" value="69100">Villeurbanne</option>
+                                <option style="color:white;" value="69500">Bron</option>
+                                <option style="color:white;" value="69120">Vaulx-en-velin</option>
+                                <option style="color:white;" value="69300">Caluire et Cuire</option>
+                            </optgroup>
+                            <optgroup label="Other">
+                                <option style="color:white;">Around me</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <!-- by main type -->
+                    <div class="filter-item">
+                        <select class="selectpicker show-tick" id="mainType" multiple title="By maintype" multiple data-selected-text-format="count > 3">
+                            <option style="color:white;" value="Bar">Bar</option>
+                            <option style="color:white;" value="Restaurant">Restaurant</option>
+                            <option style="color:white;" value="Bar-restaurant">Bar - Restaurant</option>
+                        </select>
+                    </div>
+
+                    <!-- by type cuisine -->
+                    <div class="filter-item">
+                        <select class="selectpicker show-tick" id="subType" multiple title="By subtype" multiple data-selected-text-format="count > 2">
+                            <option style="color:white;" value="Italian">Italian</option>
+                            <option style="color:white;" value="Japanese">Japanese</option>
+                            <option style="color:white;" value="Chinese">Chinese</option>
+                            <option style="color:white;" value="French">French</option>
+                            <option style="color:white;" value="Latino">Latino</option>
+                            <option style="color:white;" value="Fast food">Fast food</option>
+                            <option style="color:white;" value="Bar">Bar</option>
+                        </select>
+                    </div>
+
+                    <!-----Price----->
+                    <div class="filter-item" id="priceContent">
+                        <h2>Price</h2>
+                        <div class="form-check" >
+                            <label>
+                                <input type="checkbox" id="price1" name="check">   <i class="fas fa-euro-sign"></i>
+                            </label>
+                        </div>
+                        <div class="form-check" >
+                            <label>
+                                <input type="checkbox" id="price2" name="check">   <i class="fas fa-euro-sign"></i><i class="fas fa-euro-sign"></i>
+                            </label>
+                        </div>
+                        <div class="form-check" >
+                            <label>
+                                <input type="checkbox" id="price3" name="check">   <i class="fas fa-euro-sign"></i><i class="fas fa-euro-sign"></i><i class="fas fa-euro-sign"></i>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label>
+                                <input type="checkbox"  id="price4" name="check">   <i class="fas fa-euro-sign"></i><i class="fas fa-euro-sign"></i><i class="fas fa-euro-sign"></i><i class="fas fa-euro-sign"></i>
+                            </label>
+                        </div>
+                    </div>
+                    <!-----Rating----->
+                    <div class="filter-item" id="ratingContent">
+                        <h2>Rating</h2>
+                        <div class="form-check">
+                            <label>
+                                <input type="checkbox" id="star1" name="check">   <span class="fa fa-star"></span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label>
+                                <input type="checkbox" id="star2" name="check">   <span class="fa fa-star"></span><span class="fa fa-star"></span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label>
+                                <input type="checkbox" id="star3" name="check">   <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label>
+                                <input type="checkbox" id="star4" name="check">   <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label>
+                                <input type="checkbox" id="star5" name="check">   <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></span><span class="fa fa-star"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Date and time -->
+                    <div class="filter-item">
+                        <input class="datetimepicker" id="datetimepicker-secondSidebar" placeholder="Date and Time" type="text" readonly/>
+                        <script type="text/javascript">
+                            $('#datetimepicker-secondSidebar').datetimepicker({
+                                format: "yyyy-mm-dd  HH:MM",
+                                footer: true,
+                                modal: true,
+                                altField: "#datetimepicker-secondSidebar",
+                            });
+                        </script>
+                    </div>
+                    <!-- Button filter -->
+                    <div class="btn-filter-group">
+                        <button class="btn-reset" id="resetFilters">Reset</button>
+                        <button class="btn-filter" id="btn-filter">Filter</button>
+                    </div>
+                </div>
+
+                <!---------- Settings content ------------->
+                <div id="setting-content">
+                    <!-----Map style----->
+                    <div class="setting-item" id="styleContent">
+                        <h2>Map Style</h2>
+                        <div class="form-check">
+                            <label>
+                                <input type="radio" name="toggle" checked id="basic" class="btn btnStyle"> <span class="label-text" >Basic</span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label>
+                                <input type="radio" name="toggle" id="streets" class="btn btnStyle"> <span class="label-text" >Streets</span>
+                        </div>
+                        <div class="form-check">
+                            <label>
+                                <input type="radio" name="toggle" id="light" class="btn btnStyle"> <span class="label-text" >Light</span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label>
+                                <input type="radio" name="toggle" id="dark" class="btn btnStyle"> <span class="label-text" >Dark</span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label>
+                                <input type="radio" name="toggle" id="satellite" class="btn btnStyle"> <span class="label-text" >Satellite</span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-----Display----->
+                    <div class="setting-item" id="displayContent">
+                        <h2>Display</h2>
+                        <div class="form-check">
+                            <label>
+                                <input type="radio" name="radio" checked id="viewClusters"> <span class="label-text">Clusters</span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label>
+                                <input type="radio" name="radio" id="viewPoints"> <span class="label-text">Points</span>
+                        </div>
+                        <div class="form-check">
+                            <label>
+                                <input type="radio" name="radio" id="viewHeat"> <span class="label-text">Heat</span>
+                        </div>
+                    </div>
+                    <!-----Heat----->
+                    <div class="setting-item" id="heatMap">
+                        <h2>Heatmap</h2>
+                        <div class="form-check">
+                            <label>
+                                <input type="checkbox" name="toggle" id="heat"> <span class="label-text" >Heat</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- BUTTON TO OPEN/CLOSE SIDEBAR -->
+            <button type="button" id="sidebarCollapse" role="button" aria-label="Toggle Navigation" class="lines-button x">
+                <span class="lines"></span>
+            </button>
+
+        </div>
+
+        <div id='legend' style="visibility: hidden">
+            <h4>Points</h4>
+            <i id="closeLegend" class="fa fa-window-minimize"></i>
+            <div id="legendCircleBar"></div><div class="colorP">Bar</div>
+            <div id="legendCircleRestaurant"></div><div class="colorP">Restaurant</div>
+            <div id="legendCircleBarRestaurant"></div><div class="colorP">Bar-Restaurant</div>
+        </div>
+
+        <div id="smallLegend" style="visibility: hidden">Legend<i id="restore" class="fa fa-window-restore"></i></div>
+
+
+
+
+
+
+
+
+        <!-- Get filter values from home page and pass it to .js -->
+        <!-- To use with .php
+        <?php
+        $packed = $_POST['data'];
+        $data = explode(",", $packed);
+        for ($i = 0; ($i < count($data)); $i++) {
+            # Undo what JavaScript's escape() function did
+            $data[$i] = rawurldecode($data[$i]);
+            # Slashes need escaping when they appear in code
+            $data[$i] = str_replace("\\", "\\\\", $data[$i]);
+            # Quotes need escaping too
+            $data[$i] = str_replace("\"", "\\\"", $data[$i]);
+        }
+        echo '<script>';
+        echo 'var data =' . json_encode($data) . ';' ;
+        echo '</script>';
+        ?>-->
+        <script>
+            // To use with .html
+            var query = window.location.search;
+            // Skip the leading ?, which should always be there,
+            // but be careful anyway
+            if (query.substring(0, 1) == '?') {
+                query = query.substring(1);
+            }
+            var data = query.split(',');
+            for (i = 0; (i < data.length); i++) {
+                data[i] = unescape(data[i]);
+            }
+        </script>
+        <script src="js/map.js"></script>
+    </div>
+
+
+</body>
+</html>
