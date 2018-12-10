@@ -4,9 +4,6 @@ const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
 const app = express();
 
-// serve files from the public directory
-app.use(express.static('public'));
-
 // connect to the db and start the express server
 let db;
 
@@ -15,7 +12,8 @@ const url =  'mongodb://localhost/mydb';
 // E.g. for option 2) above this will be:
 // const url =  'mongodb://localhost:21017/databaseName';
 
-MongoClient.connect(url, { useNewUrlParser: true } ,function(err, database) {
+MongoClient.connect(url, { useNewUrlParser: true }, function(err, database) {
+
     if(err) {
         return console.log(err);
     }
@@ -26,10 +24,13 @@ MongoClient.connect(url, { useNewUrlParser: true } ,function(err, database) {
     });
 });
 
+
 // serve the homepage
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 app.use(express.static(__dirname));
 app.listen(3000);
+
+
 

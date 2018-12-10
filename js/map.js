@@ -12,6 +12,8 @@
     }
     console.log(filterData);
 
+
+
     // Creation of a loader icon
 
     var loaderBackground = document.createElement("div");
@@ -64,6 +66,9 @@
     };
 
     xobj.send(null);
+
+
+
 
 }
 
@@ -613,7 +618,7 @@ function mapInitialisation(userCoordinates) {
 
         map.addSource('places', {
             type: "geojson",
-            data: "fusionPlaces.geojson",
+            data: "JSON/fusionPlaces.geojson",
             cluster: setClusters,
             clusterMaxZoom: 16, // Max zoom to cluster points on
             clusterRadius: 75 // Radius of each cluster when clustering points (defaults to 50)
@@ -621,7 +626,7 @@ function mapInitialisation(userCoordinates) {
 
         map.addSource("places2", {
             type: "geojson",
-            data: "fusionPlaces.geojson",
+            data: "JSON/fusionPlaces.geojson",
             cluster: false,
             clusterMaxZoom: 16, // Max zoom to cluster points on
             clusterRadius: 75, // Radius of each cluster when clustering points (defaults to 50)
@@ -3043,7 +3048,7 @@ function loadBarsJSON() {
 
     xobj.overrideMimeType("application/json");
 
-    xobj.open('GET', 'bars.json', true);
+    xobj.open('GET', 'JSON/bars.json', true);
 
     xobj.onreadystatechange = function () {
 
@@ -3074,7 +3079,7 @@ function loadRestaurantsJSON() {
 
     var xobj = new XMLHttpRequest();
 
-    xobj.open('GET', 'restaurants.json', true);
+    xobj.open('GET', 'JSON/restaurants.json', true);
 
     xobj.onreadystatechange = function () {
 
@@ -3103,7 +3108,7 @@ function loadBarsRestaurantsJSON() {
 
     var xobj = new XMLHttpRequest();
 
-    xobj.open('GET', 'barsRestaurants.json', true);
+    xobj.open('GET', 'JSON/barsRestaurants.json', true);
 
     xobj.onreadystatechange = function () {
 
@@ -3132,7 +3137,7 @@ function loadYelpJSON() {
 
     var xobj = new XMLHttpRequest();
 
-    xobj.open('GET', 'jsonBusinessYELP.json', true);
+    xobj.open('GET', 'JSON/jsonBusinessYELP.json', true);
 
     xobj.onreadystatechange = function () {
 
