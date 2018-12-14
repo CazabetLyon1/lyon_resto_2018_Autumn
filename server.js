@@ -69,12 +69,12 @@ app.get('/map', (req, res) => {
     console.log(req.query);
 
 //  res.send('coucou');
-    db.collection("fusion2").find({}).toArray(function(err, result) {
+    db.collection("fusionPlace").find().toArray(function(err, result) {
         if (err) return console.log(err);
         //console.log(result);
         if (result != null) {
             //console.log(typeof result[0].properties.vicinity);
-            res.json(result);
+            res.send(result);
         }
     });
 });
