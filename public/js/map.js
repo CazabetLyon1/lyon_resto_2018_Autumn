@@ -6,23 +6,49 @@
 {
     console.log('Client-side code running');
 
-    fetch('/map', {method: 'GET'})
-        .then(function(response) {
-            if(response.ok) return response.text();
-            throw new Error('Request failed.');
-        })
-        .then(function(data) {
-            //console.log(data);
-            geoJsonSource = data;
-            geoJsonSource = geoJsonSource.substr(1).slice(0, -1);
-            geoJsonSourceParsed = JSON.parse(geoJsonSource);
-            setTimeout(function(){ document.getElementsByClassName("loaderBackground")[0].remove(); }, 2000);
-            setTimeout(init(), 1000);
-            setTimeout(function(){ document.getElementById("sidebarCollapse").style.display = "inline-block"; }, 1000);
-        })
-        .catch(function(error) {
-            console.log(error);
-        });
+    var words = ["LOADING", "SUSHI", "FRIENDS", "TACOS", "RESTAURANT", "INDIAN", "ARABIAN", "LYON", "LOCAL", "FOOD", "DRINKS", "ME", "YOU"];
+
+    window.addEventListener("load", function() {
+        var randoms = window.document.getElementsByClassName("randoms");
+        for (i = 0; i < randoms.length; i++)
+            changeWord(randoms[i]);
+    }, false);
+
+    function changeWord(a) {
+        a.style.opacity = '0.1';
+        a.innerHTML = words[getRandomInt(0, words.length - 1)];
+        setTimeout(function() {
+            a.style.opacity = '1';
+        }, 425);
+        setTimeout(function() {
+            changeWord(a);
+        }, getRandomInt(500, 800));
+    }
+
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    setTimeout(function(){
+        fetch('/map', {method: 'GET'})
+            .then(function(response) {
+                if(response.ok) return response.text();
+                throw new Error('Request failed.');
+            })
+            .then(function(data) {
+                //console.log(data);
+                geoJsonSource = data;
+                geoJsonSource = geoJsonSource.substr(1).slice(0, -1);
+                geoJsonSourceParsed = JSON.parse(geoJsonSource);
+                document.getElementsByClassName("loaderBackground")[0].remove();
+                init();
+                document.getElementById("sidebarCollapse").style.display = "inline-block";
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    }, 2000);
 
 
     // Get filter values from map.html

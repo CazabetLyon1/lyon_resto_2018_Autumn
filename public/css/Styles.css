@@ -37,8 +37,9 @@ body {
 }
 
 .loaderBackground {
+    background: #053d4e;
 
-	background-color: #1E1E1E;
+    background: linear-gradient( to bottom right, #C9C17A,  #053D4E);
 
 	height: 100%;
 
@@ -46,7 +47,7 @@ body {
 
 }
 
-#loading {position:absolute;left:calc(50% - 100px);top:calc(50% - 25px);z-index:9999}
+/*#loading {position:absolute;left:calc(50% - 100px);top:calc(50% - 25px);z-index:9999}
 .uil-ripple {position:absolute;left:calc(50% - 90px);top:calc(50% - 90px);opacity:.5;z-index:999}
 
 .ld-l {opacity:0;animation: ld-in 3s 0.0s ease infinite;}
@@ -63,6 +64,62 @@ body {
 	100% {opacity:1;transform:scale(1);}
 }*/
 
+
+.container {
+	position: absolute;
+	top: 50%;
+    left:10%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	width: 100%;
+}
+
+.right {
+	float: left;
+	color: #FFF;
+	width: 50%;
+	text-align: right;
+}
+
+.left {
+	float: left;
+	color: #7F8FB1;
+	width: 50%;
+	text-align: right;
+	-moz-transform: scale(-1, 1);
+	-webkit-transform: scale(-1, 1);
+	-o-transform: scale(-1, 1);
+	-ms-transform: scale(-1, 1);
+	transform: scale(-1, 1);
+	margin-top: 40px;
+}
+
+h1,
+h4 {
+	-webkit-transition: opacity .25s;
+	-moz-transition: opacity .25s;
+	-o-transition: opacity .25s;
+	-ms-transition: opacity .25s;
+	transition: opacity .25s;
+	font-family: "FARCRY", Verdana, Tahoma;
+}
+
+h1 {
+	font-size: 6vw;
+}
+
+h4 {
+	font-size: 3vw;
+}
+
+h4:first-child {
+	margin-bottom: -2vw;
+}
+
+h4:last-child {
+	margin-top: -1.7vw;
+}
 
 
 
