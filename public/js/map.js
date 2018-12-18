@@ -44,6 +44,8 @@
                 document.getElementsByClassName("loaderBackground")[0].remove();
                 init();
                 document.getElementById("sidebarCollapse").style.display = "inline-block";
+                document.getElementById("sidebarCollapse").classList.add("open");
+                document.getElementById("sidebar").classList.add("active");
             })
             .catch(function(error) {
                 console.log(error);
