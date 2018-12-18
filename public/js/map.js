@@ -2617,8 +2617,8 @@ function resetFilter() {
     forcedDate = null;
     // Reset geoJson source
     geoJsonSourceParsed = JSON.parse(geoJsonSource);
-    map.getSource('places').setData(JSON.parse(geoJsonSourceParsed));
-    map.getSource('places2').setData(JSON.parse(geoJsonSourceParsed));
+    map.getSource('places').setData(JSON.parse(geoJsonSource));
+    map.getSource('places2').setData(JSON.parse(geoJsonSource));
 
 }
 
