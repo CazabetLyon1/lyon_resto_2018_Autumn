@@ -46,6 +46,7 @@
                 document.getElementById("sidebarCollapse").style.display = "inline-block";
                 document.getElementById("sidebarCollapse").classList.add("open");
                 document.getElementById("sidebar").classList.add("active");
+                history.pushState(null, '', '/map.html');
             })
             .catch(function(error) {
                 console.log(error);
@@ -225,6 +226,8 @@ var geoJsonSource;          // GeoJson source of the project, get from mongodb
 
 var geoJsonSourceParsed;        // GeoJson source after JSON.parse
 
+var firstTime               // Variable to know if first time initialisation map
+
 var forcedDate = null;
 
 // Initialisation of user's location with coordinates of Lyon near Bellecour
@@ -398,7 +401,7 @@ var clusterCountLayer = ({
 function init() {
 
     // Mapbox generation with API key authentication
-    map = mapInitialisation(userCoordinates);
+    map = mapInitialisation(userCoordinates,1);
 
     /*~
     var options = {
@@ -619,7 +622,7 @@ function init() {
  * @param userCoordinates Actual coordinates of user
  * @returns A Mapbox's map object
  */
-function mapInitialisation(userCoordinates) {
+function mapInitialisation(userCoordinates, firstTime) {
 
     mapboxgl.accessToken = 'pk.eyJ1IjoibWFnaXJsMjMiLCJhIjoiY2pvbGVydWkyMG5ydjN1cGp1NDR6ODVsdiJ9.Xp7CrSuBHDXYc3C8NMSxDg';
 
@@ -791,8 +794,10 @@ function mapInitialisation(userCoordinates) {
         map.setLayoutProperty("placesSymbolsP", 'visibility', 'none');
         map.setLayoutProperty("heat", 'visibility', 'none');
 
-        //filter with values get from home page
-        filterFromHomePage();
+        //filter with values get from home page, just do one time when charging this page
+        if (firstTime == 1) {
+            filterFromHomePage();
+        }
 
         filterMap();
     });
@@ -1605,7 +1610,7 @@ function changeStyle(input) {
 
     //map.remove();
 
-    mapInitialisation(userCoordinates);
+    mapInitialisation(userCoordinates,0);
 
 }
 
@@ -1823,23 +1828,23 @@ function filterFromHomePage() {
     //filterData[4] => subtype
     //filterData[5] => date and time
     var selected_locations = filterData[0];
-    console.log(selected_locations);
+    //console.log(selected_locations);
 
     var selected_prices = filterData[1];
-    console.log(selected_prices);
+    //console.log(selected_prices);
 
     var selected_ratings = filterData[2];
-    console.log(selected_ratings);
+    //console.log(selected_ratings);
 
     var selected_main_types = filterData[3];
-    console.log(selected_main_types);
+    //console.log(selected_main_types);
 
     var selected_sub_types = filterData[4];
-    console.log(selected_sub_types);
+    //console.log(selected_sub_types);
 
     //Format Open Time
     var openTime = filterData[5];
-    console.log(openTime);
+    //console.log(openTime);
 
     //Search value
     var searchString = filterData[6];
