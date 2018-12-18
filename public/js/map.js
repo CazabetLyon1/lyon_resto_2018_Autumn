@@ -223,10 +223,6 @@ var geoJsonSource;          // GeoJson source of the project, get from mongodb
 
 var geoJsonSourceParsed;        // GeoJson source after JSON.parse
 
-var source_places;
-
-var source_places2;
-
 var forcedDate = null;
 
 // Initialisation of user's location with coordinates of Lyon near Bellecour
@@ -419,7 +415,6 @@ function init() {
     var goButton = document.getElementById("btn-filter");
 
     goButton.addEventListener("click", filterMap);
-
 
     var resetButton = document.getElementById("resetFilters");
 
@@ -3238,7 +3233,7 @@ function loadBarsJSON() {
 
     xobj.overrideMimeType("application/json");
 
-    xobj.open('GET', 'JSON/nouveaux_bars.json', true);
+    xobj.open('GET', 'JSON/bars.json', true);
 
     xobj.onreadystatechange = function () {
 
