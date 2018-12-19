@@ -69,7 +69,7 @@ app.get('/map', (req, res) => {
     console.log(req.query);
 
 //  res.send('coucou');
-    db.collection("fusionPlace").find().toArray(function(err, result) {
+    db.collection("newBD").find().toArray(function(err, result) {
         if (err) return console.log(err);
         //console.log(result);
         if (result != null) {
@@ -80,6 +80,7 @@ app.get('/map', (req, res) => {
 });
 
 app.use(express.static('public'));
+
 
 
 
