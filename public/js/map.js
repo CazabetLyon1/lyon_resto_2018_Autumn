@@ -1519,19 +1519,26 @@ function createMarkerPopupHTML(place) {
 function createInfoContentHTML(place)   {
 
     console.log(place);
+
     /*reset before create*/
+
     var info = document.getElementsByClassName('info-item');
+
     while(info.length > 0){
+
         info[0].parentNode.removeChild(info[0]);
+
     }
 
     /*create html to insert in info-content*/
     var html = "";
+
     /*Name*/
     var placeName = accent_fold(place.name);
-    html += "<div class='info-item' id='info-header'>";
-    html += "<h3 id='Title'>" + placeName + "</h3>";
 
+    html += "<div class='info-item' id='info-header'>";
+
+    html += "<h3 id='Title'>" + placeName + "</h3>";
 
     /*Rating*/
     if (place.rating != null) {
@@ -1632,12 +1639,17 @@ function createInfoContentHTML(place)   {
         var days = JSON.parse(place["opening_hours"])["weekday_text"];
 
         if (days != null) {
+
             html += "<div class='info-item'>" +
                 "       <h2 data-toggle=\"collapse\" data-target=\"#openingTime\" aria-expanded=\"false\"><i class=\"fas fa-clock\"  aria-hidden=\"true\"></i> Opening Time</h2>" +
                 "       <ul class=\"collapse\" id='openingTime'>";
+
             for (var i = 0; i < days.length; i++) {
+
                 html += "       <li>"+ days[i] +"</li>";
+
             }
+
             html += "   </ul>" +
                 "   </div>";
         }
@@ -1650,8 +1662,11 @@ function createInfoContentHTML(place)   {
         "           <li>" + place.mainType + "</li>";
 
     if (place.subtypes != null && place.subtypes !== "null") {
+
         var subtypesToDisplay = JSON.parse(place.subtypes);
+
         for (var i = 0 ; i < subtypesToDisplay.length ; i++) {
+
             html += "<li>" + subtypesToDisplay[i].title + "</li>";
         }
     }
@@ -1661,24 +1676,29 @@ function createInfoContentHTML(place)   {
 
     /* Reviews...*/
     if (place.reviews != null) {
-        console.log(typeof place.reviews);
+
         if (typeof place.reviews == 'string'){
+
             var reviews = place.reviews.split(',{');
+
             html += "<div class='info-item'>" +
                 "       <h2 data-toggle='collapse' data-target='#Review' aria-expanded='false'><i class='fas fa-comments'></i> Review</h2>" +
                 "       <ul class='collapse' id='Review'>" +
                 "           <li>" + place.reviews + "</li>" +
                 "    </ul></div>";
+
         } else {
             var reviews = JSON.parse(place.reviews);
-            console.log(reviews);
 
             html += "<div class='info-item'>" +
                 "       <h2 data-toggle='collapse' data-target='#Review' aria-expanded='false'><i class='fas fa-comments'></i> Review</h2>" +
                 "       <ol class='collapse' id='Review'>";
             for (var i = 0; i < reviews.length; i++) {
+
                 html += "<li>" + reviews[i].text + "</li>";
+
             }
+
             html += "   </ol>" +
                 "   </div>";
         }
@@ -1695,41 +1715,63 @@ function createInfoContentHTML(place)   {
 
     // Adding map control direction while address clicked
     var directionButton = document.getElementById("Address");
+
     var mapbox_ctrl_top_right = document.getElementsByClassName("mapboxgl-ctrl-top-right")[0];
+
     var controlDirection = new MapboxDirections({
+
         accessToken: mapboxgl.accessToken,
+
         steps: true,
+
         voice_instructions: true,
+
     });
+
     directionButton.onclick = function() {
+
         if (!mapbox_ctrl_top_right.hasChildNodes()) {
+
             map.addControl(controlDirection, 'top-right');
+
             openDirectionControl();
+
             // Set starting point as user position
             var userCoordString = "";
+
             userCoordString += userCoordinates.userLongitude.toString();
+
             userCoordString += ',' + userCoordinates.userLatitude.toString();
+
             controlDirection.setOrigin(userCoordString);
 
             // Set destination as place which is showing in info-content
             var restCoordString = geometryLng.toString() + "," + geometryLat.toString();
+
             controlDirection.setDestination(restCoordString);
-            console.log(controlDirection.parentNode);
+
 
             document.getElementById('navigationButton').onclick = function(){
                 if (!mapbox_ctrl_top_right.hasChildNodes()){
+
                     map.addControl(controlDirection, 'top-right');
+
                     openDirectionControl();
+
                 }
+
                 else if (mapbox_ctrl_top_right.hasChildNodes()){
+
                     map.removeControl(controlDirection);
+
                     mapbox_ctrl_top_right.html = "";
                 }
+
             };
+
         }
+
     };
-
-
 
 }
 
@@ -2629,6 +2671,7 @@ function filterFunction(filter) {
 
     //Update data for cluster layout
     map.getSource('places').setData(geoJsonSourceParsed);
+
     //Update data for heat and point layout
     map.getSource('places2').setData(geoJsonSourceParsed);
 
@@ -2692,19 +2735,28 @@ function filterDate(filter) {
  * Removes all current filters by setting the original geoJsonSource.
  */
 function resetFilter() {
+
     /* reset all filter items */
     $("#search, textarea").val("");
+
     $('.selectpicker').selectpicker('deselectAll');
+
     $('.form-check input[type=checkbox]').prop('checked',false);
+
     $('#datetimepicker-secondSidebar').datetimepicker( 'value', {
+
         minDate: null,
+
         maxDate: null});
 
     /*setting the original geoJsonSource*/
     forcedDate = null;
+
     // Reset geoJson source
     geoJsonSourceParsed = JSON.parse(geoJsonSource);
+
     map.getSource('places').setData(JSON.parse(geoJsonSource));
+
     map.getSource('places2').setData(JSON.parse(geoJsonSource));
 
 }
@@ -4056,10 +4108,13 @@ function cleanPositionDoublons(geoJSONSourceBase) {
 }
 
 function download(textBlock) {
+
     let newWindow = window.open("about:blank", "", "_blank");
 
     if (newWindow) {
+
         newWindow.document.write(textBlock);
+
     }
 }
 
