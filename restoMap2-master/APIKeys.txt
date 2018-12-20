@@ -1,8 +1,0 @@
-//MapBox API key
-pk.eyJ1IjoiYWd0ZXJyYWwiLCJhIjoiY2pkMjRnbjJkNWYwZDJ4bGdwMWlxODJiYSJ9.4W9g-Go5vHpL9UZmjnGj4g
-
-//Google Places API key
-AIzaSyBPv7VFQeI_dNWfE-Y8IXIywMzEzSkNd28
-
-// Yelp API Key
-J3wFfZxm4FearDPamjBK9z4sblP7g9-gr2Ie1vzGzxYWkpzohWbthWGBNinCbStsQMBQxWtHmo-nn8xBKbREAFHNzlgXG6kxIPoRpJg5oO0zGOpprTYnkZIF_Dl4WnYx
