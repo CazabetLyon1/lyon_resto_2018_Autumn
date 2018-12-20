@@ -2425,7 +2425,7 @@ function filterFunction(filter) {
 
         var weekday = date.getDay();
 
-        features = filteredGeoJson.features.filter(function (value) {
+        features = features.filter(function (value) {
 
             if (value.properties.opening_hours != null && value.properties.opening_hours.periods != null) {
 
