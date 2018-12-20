@@ -1,73 +1,88 @@
-﻿# Resto's à Lyon!
+# Interactive map of Lyon
 
-This is a web site project **Resto's à Lyon!** developed during a subject of 3rd year "LIFPROJET"  at l’Université Claude Bernard Lyon 1.  The main idea is to put into practice our team knowledge but also make us explore new technoly and tools of Web programming. We continue this project which was started by our friends Nelly BARRET and Louis LE BRUN.
+###Resto's à Lyon!
 
+This is a web site project Resto's à Lyon! developed during a subject of 3rd year "LIFPROJET"  at l’Université Claude Bernard Lyon 1.  The main idea is to put into practice our team knowledge but also make us explore new technoly and tools of Web programming. We continue this project which was started by our friends Nelly BARRET and Louis LE BRUN.
 
-# Getting Started
-
-## Prerequisites
+### Prerequisites
 
 You need an internet connection and also Node.js framework as well as MongoDB Databese installed on your computer.
 
-- On Ubuntu
- 1. To install Node.js :
-`sudo apt-get update`
-`sudo apt-get install nodejs npm`
-To install the needed modules in the project repository tap:
-`npm install mongo`
-`npm install express`
-2. To Install MongoDB 
-`sudo apt-get update`
-`sudo apt-get install -y mongodb-org`
+You need to install MongoDB (https://docs.mongodb.com/manual/installation/) and NodeJS (https://nodejs.org/en/download/)
 
---------
+You can also install MongoDB Compass for a easier manage of your database in MongoDB
 
-- On Mac
-1. First install [Homebrew ](https://brew.sh/)
-2. Then `brew install node`
-To install the needed modules in the project repository tap:
- `npm install mongo`
- `npm install express`
-3. To install MongoDB `brew install mongodb`
+## Getting Started
 
------
+First, you need to start MongoDB service:
+   * In Linux, with the command following `sudo service mongod stop`
+   * In Windows, you need to go to the directory where your MongoDB installed then type "mongod" or you can start this service in Task Manager
 
-`npm install`
-To start Mongo, open two Terminal tabs. 
-In the first one in order to initialize Mongo tap:
--  `mongod`
-In the second one to start and open it tap:
-- `mongo`
-
-THEN, to import the geoJSON fail into your MongoDB you should tap into an open Terminal tab:
+Then , to import the GEOJSON file into your MongoDB you should tap into an open Terminal tab:
 `mongoimport --db NameOfDB  --collection NameOfCollection --file absolute_path_to_the_file.geojson`
 
+Second, go to directory of this project then type the command below in your command terminal:
+   
+   `node server.js`
+   
+During development this can become a pain. To make this process easier install nodemon, a tool that will monitor your code for changes and automatically restart the server when necessary. To install nodemon:
+
+  `npm install -g nodemon`
+
+You can then run nodemon server.js to run your server and have it reloaded when you make changes. 
+
+There is a example how NodeJS and MongoDB works (https://gist.github.com/aerrity/fd393e5511106420fba0c9602cc05d35) which, in our opinion, is simple to understand
+
+### Running the tests
+
+There is a debug mode for the data retrieve.
+
+### Data
+Example of place informations:
+```
+    {
+        formatted_address       : "["Metro Cuire (C)","69300 Caluire et Cuire","France"]",
+        formatted_phone_number  : "06 61 41 99 60",
+        geometry                : "{"location":{"lat":45.785595167419004,"lng":4.83302194434442}}",
+        mainType                : "Bar-Restaurant",
+        name                    : "Pitakia",
+        place_id                : "pitakia-caluire-et-cuire",
+        price                   : "€",
+        rating                  : 4,
+        scope                   : "YELP",
+        subtypes                : "[{"alias":"foodtrucks","title":"Food Trucks"},{"alias":"greek","title":"Greek"}]",
+        url                     : "https://www.yelp.com/biz/pitakia-caluire-et-cuire?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+        vicinity                : "Metro Cuire (C)"
+    }
+```
+### Built With
+
+* [Mapbox](https://www.mapbox.com/) - API for map
+* [Google Places](https://developers.google.com/places/) - API for data
+* [Yelp](https://www.yelp.com/) - second API for data
+* [Bootstrap](https://getbootstrap.com/) - Web framework
+* [JsDoc](http://usejsdoc.org/) - API documentation generator for JavaScript (generate JsDoc (at the root of the project) : jsdoc js -d=doc)
+* [NodeJS](http://https://nodejs.org/en) 
+* [MongoDB](https://www.mongodb.com/fr) 
 
 
- ## Built with
- - [MapBox](https://www.mapbox.com/) - API for map
- - [Google Places](https://cloud.google.com/maps-platform/places/) - API for data
- - [Bootstrap](https://getbootstrap.com/) - Web framework 
- ## Versionning 
- - [GitLab ](https://about.gitlab.com/) for versionning
+### Versioning
 
-## Authors
+* [GitLab](https://about.gitlab.com/) for versioning.  
 
+### Authors
 - Fall 2018:
-Andrew ALBERT
-François ROBERT
-Rodislav IVANOV
-Nguyen NGUYEN
-
+  * Andrew ALBERT
+  * François ROBERT
+  * Rodislav IVANOV
+  * Nguyen NGUYEN
+  
 - Spring 2018:
-Nelly BARRET 
-Louis LE BRUN
+  * Nelly BARRET
+  * Louis LE BRUN
 
-
-## License
+### License
 
 This project is licensed under copyright.
 
 COPYRIGHTS @ Andrew ALBERT, François ROBERT, Rodislav IVANOV, Nguyen NGUYEN, Nelly BARRET, Louis LE BRUN - LIFPROJET 2018
-
-
