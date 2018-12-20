@@ -3,6 +3,42 @@
   <component name="ChangeListManager">
     <list default="true" id="3c163e6e-2b80-4098-8af5-a8a562882b3c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/APIKeys.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/Assets/barIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/Assets/cafeIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/Assets/clock.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/Assets/homeIconBlack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/Assets/homeIconBlue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/Assets/homeIconWhite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/Assets/restaurantIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/JSON/ancien_bars.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/JSON/ancien_barsRestaurants.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/JSON/ancien_restaurants.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/JSON/bars.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/JSON/barsRestaurants.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/JSON/fusionPlaces.geojson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/JSON/fusionPlacesV2.geojson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/JSON/jsonBusinessYELP.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/JSON/places.geojson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/JSON/placesID" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/JSON/restaurants.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/css/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/css/titatoggle-dist.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/doc/files.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/doc/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/doc/symbols/_global_.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/doc/symbols/src/js_animations.js.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/doc/symbols/src/js_map.js.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/js/animations.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/js/map.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/static/legend.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/static/navbar.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restoMap2-master/static/settings.php" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +98,7 @@
           <entry key="js" value="12057" />
           <entry key="json" value="11" />
           <entry key="md" value="1104" />
-          <entry key="txt" value="252" />
+          <entry key="txt" value="258" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -72,102 +108,13 @@
           <entry key="JSON" value="11" />
           <entry key="JavaScript" value="12057" />
           <entry key="Markdown" value="1104" />
-          <entry key="PLAIN_TEXT" value="260" />
+          <entry key="PLAIN_TEXT" value="266" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/restoMap2-master/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="357">
-                <caret line="21" column="57" lean-forward="true" selection-end-line="91" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="658">
-                <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/map.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1037">
-              <caret line="4064" column="135" selection-start-line="4064" selection-start-column="135" selection-end-line="4064" selection-end-column="135" />
-              <folding>
-                <element signature="e#575#740#0" />
-                <element signature="e#778#1069#0" />
-                <element signature="e#910#958#0" />
-                <element signature="e#997#1037#0" />
-                <element signature="e#1107#1181#0" />
-                <element signature="e#1304#2391#0" />
-                <element signature="e#1384#1510#0" />
-                <element signature="e#1546#2291#0" />
-                <element signature="e#2329#2382#0" />
-                <element signature="e#2623#2717#0" />
-                <element signature="e#2796#4249#0" />
-                <element signature="e#4254#4336#0" />
-                <element signature="e#4337#4681#0" />
-                <element signature="e#4683#4803#0" />
-                <element signature="e#5097#5235#0" />
-                <element signature="e#5251#5448#0" />
-                <element signature="e#5451#5556#0" />
-                <element signature="e#5580#5653#0" />
-                <element signature="e#5597#5625#0" />
-                <element signature="e#5655#5783#0" />
-                <element signature="e#5809#5996#0" />
-                <element signature="e#5824#5852#0" />
-                <element signature="e#5913#5976#0" />
-                <element signature="e#6088#6167#0" />
-                <element signature="e#13212#13824#0" />
-                <element signature="e#13359#13421#0" />
-                <element signature="e#13875#15628#0" />
-                <element signature="e#14040#14102#0" />
-                <element signature="e#14592#14708#0" />
-                <element signature="e#14757#14873#0" />
-                <element signature="e#15103#15622#0" />
-                <element signature="e#15322#15400#0" />
-                <element signature="e#15419#15504#0" />
-                <element signature="e#15523#15611#0" />
-                <element signature="e#15677#16278#0" />
-                <element signature="e#15816#15878#0" />
-                <element signature="e#16285#16519#0" />
-                <element signature="e#16716#16904#0" />
-                <element signature="e#16957#17076#0" />
-                <element signature="e#16985#17035#0" />
-                <element signature="e#17174#17212#0" />
-                <element signature="e#17528#17801#0" />
-                <element signature="e#17838#18147#0" />
-                <element signature="e#18225#18288#0" />
-                <element signature="e#18366#18429#0" />
-                <element signature="e#18705#19087#0" />
-                <element signature="e#19111#19487#0" />
-                <element signature="e#19509#19885#0" />
-                <element signature="n#style#0;n#i#0;n#button#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#p#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#p#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#p#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#p#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -266,34 +213,6 @@
               <item name="projet_nodejs" type="b2602c69:ProjectViewProjectNode" />
               <item name="projet_nodejs" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="projet_nodejs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet_nodejs" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projet_nodejs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet_nodejs" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projet_nodejs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet_nodejs" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="JSON" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projet_nodejs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet_nodejs" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="vegas" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projet_nodejs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet_nodejs" type="462c0819:PsiDirectoryNode" />
-              <item name="restoMap2-master" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -304,7 +223,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545344063519" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545344295959" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../nodejs_mongo" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -352,7 +271,7 @@
       <workItem from="1545090528161" duration="3011000" />
       <workItem from="1545121035319" duration="16090000" />
       <workItem from="1545318264704" duration="7084000" />
-      <workItem from="1545335766352" duration="8227000" />
+      <workItem from="1545335766352" duration="8470000" />
     </task>
     <task id="LOCAL-00001" summary="Il faut passer les JSON récupérés en server.js aux client-side .js">
       <created>1544460980441</created>
@@ -487,15 +406,21 @@
       <option name="project" value="LOCAL" />
       <updated>1545343974614</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Go...">
+      <created>1545344025180</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1545344025180</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102101000" />
+    <option name="totallyTimeSpent" value="102344000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2911311" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -570,7 +495,8 @@
     <MESSAGE value="Filtrage par subtype fini" />
     <MESSAGE value="Mise à jour" />
     <MESSAGE value="Go..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Go..." />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1218,20 +1144,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/restoMap2-master/README.md">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="357">
-            <caret line="21" column="57" lean-forward="true" selection-end-line="91" />
-          </first_editor>
+          <first_editor />
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/restoMap2-master/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="658">
+          <first_editor relative-caret-position="576">
             <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
           </first_editor>
           <second_editor />
