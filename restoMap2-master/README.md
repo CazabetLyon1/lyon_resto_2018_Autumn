@@ -1,8 +1,8 @@
 # Interactive map of Lyon
 
-## Synopsis
+###Resto's à Lyon!
 
-This project is an interactive map of Lyon with bars and restaurants. We can filter and search establishments. We also can personalize the view.
+This is a web site project Resto's à Lyon! developed during a subject of 3rd year "LIFPROJET"  at l’Université Claude Bernard Lyon 1.  The main idea is to put into practice our team knowledge but also make us explore new technoly and tools of Web programming. We continue this project which was started by our friends Nelly BARRET and Louis LE BRUN.
 
 ### Prerequisites
 
@@ -68,7 +68,7 @@ Example of place informations:
 
 ### Versioning
 
-* [Git Kraken](https://www.gitkraken.com/) for versioning.  
+* [GitLab](https://about.gitlab.com/) for versioning.  
 
 ### Authors
 - Fall 2018:
