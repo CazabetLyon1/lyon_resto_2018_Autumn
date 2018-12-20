@@ -85,4 +85,4 @@ Example of place informations:
 
 This project is licensed under copyright.
 
-COPYRIGHTS @ Nelly BARRET et Louis LE BRUN - LIFPROJET 2018
+COPYRIGHTS @ Andrew ALBERT, François ROBERT, Rodislav IVANOV, Nguyen NGUYEN, Nelly BARRET, Louis LE BRUN - LIFPROJET 2018
