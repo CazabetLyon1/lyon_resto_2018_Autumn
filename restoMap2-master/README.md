@@ -28,9 +28,12 @@ Second, go to directory of this project then type the command below in your comm
 During development this can become a pain. To make this process easier install nodemon, a tool that will monitor your code for changes and automatically restart the server when necessary. To install nodemon:
 
   `npm install -g nodemon`
-
+  
 You can then run nodemon server.js to run your server and have it reloaded when you make changes. 
 
+Now in your browser, enter :
+   `localhost:8080`
+   
 There is a example how NodeJS and MongoDB works (https://gist.github.com/aerrity/fd393e5511106420fba0c9602cc05d35) which, in our opinion, is simple to understand
 
 ### Running the tests
