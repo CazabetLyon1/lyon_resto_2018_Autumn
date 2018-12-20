@@ -39,8 +39,11 @@ $(document).ready(function(){
 });
 
 $("#example, body").vegas({
-    delay: 11000,
+    delay: 5000,
     slides: [
+        { src: "Img/restaurant-wallpaper-hd-1280x1024-492492.jpg"},
+        { src: "Img/HD-The-Carolina-Room-1-.jpg"},
+        { src: "Img/Nightlife-Cocktail-Bar-Drink-HD-Wallpaper.jpg"},
         { src: "Img/sonja-punz-538560-unsplash.jpg"},
         { src: "Img/abhishek-sanwa-limbu-782224-unsplash.jpg" },
         { src: "Img/bowl-chairs-cooking-262918.jpg" },

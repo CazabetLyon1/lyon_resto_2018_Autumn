@@ -3,7 +3,8 @@
 /*******************************************FIRST SIDEBAR**************************************************************/
 /**********************************************************************************************************************/
 :root {
-    --main-bg-color: #fff7ae;
+    --main-bg-color: #FFEF7C;
+    --svg-color:#339EFA;
 }
 
 .wrapper {
@@ -338,7 +339,7 @@
 }
 
 #second-sidebar #info-content .info-item svg{
-    color: var(--main-bg-color);
+    color: var(--main-color);
     margin-right: 2%;
 }
 
@@ -448,7 +449,7 @@
 }
 
 #filter-content #priceContent label {
-    color: #385f87;
+    color: var(--main-bg-color);
 }
 
 #filter-content #ratingContent label {
@@ -607,13 +608,13 @@ div[role="footer"] button{
 }
 #second-sidebar #filter-content .btn-reset{
     width:42%;
-    background: #04724D;
+    background: var(--svg-color);
     height:100%;
     font-size: 15px;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
     color:white;
-    border:2px solid #04724D;
+    border:2px solid var(--svg-color);
     border-radius:2px;
     margin-left: 5%;
     margin-right:4%;
@@ -621,13 +622,13 @@ div[role="footer"] button{
 
 #second-sidebar #filter-content .btn-filter{
     width:42%;
-    background: #932f2f;
+    background: #C12C2C;
     height:100%;
     font-size: 15px;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
     color:white;
-    border:2px solid #932f2f;
+    border:2px solid #C12C2C;
     border-radius:2px;
     margin:0;
     margin-right:5%
@@ -723,6 +724,47 @@ div[role="footer"] button{
 #setting-content #heatMap h2{
     color:#c42525;
 }
+
+/*******************************************ABOUT CONTENT*************************************************************/
+#about-modal .close{
+    font-color:white;
+}
+
+#about-modal h1{
+    font-size:30px;
+    text-align:center;
+    border-bottom: 2px solid #343a40;
+    margin-left:15%;
+    width:70%;
+}
+.modal-content{
+    overflow-y:auto;
+    background-color: #222;
+    color:white;
+}
+.modal-header{
+    height:0;
+    border:none;
+}
+
+li{
+    font-weight: bold;
+}
+
+.project-info{
+    margin-bottom:10%;
+}
+
+h3{
+    font-style:italic;
+    font-size:25px;
+    font-color:
+}
+
+h2{
+    font-size:20px;
+}
+
 
 
 

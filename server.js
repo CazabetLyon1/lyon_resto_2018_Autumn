@@ -3,26 +3,7 @@ console.log('Server-side code running');
 const express = require('express');
 const Mongo = require('mongodb');
 const MongoClient = require('mongodb').MongoClient;
-const mongoose = require('mongoose');
 const app = express();
-var fs = require('fs');
-
-/*let handleRequest = (request, response) => {
-    response.writeHead(200, {
-        'Content-Type': 'text/html'
-    });
-    fs.readFile('./index.html', null, function (error, data) {
-        if (error) {
-            response.writeHead(404);
-            respone.write('Whoops! File not found!');
-        } else {
-            response.write(data);
-        }
-        response.end();
-    });
-};
-
-http.createServer(handleRequest).listen(8000);*/
 
 // connect to the db and start the express server
 let db;
@@ -45,12 +26,13 @@ var url = "mongodb://localhost/";
 // E.g. for option 2) above this will be:
 // const url =  'mongodb://localhost:21017/databaseName';
 
+// Connect to MongoDB and get data from right database
 MongoClient.connect(url, { useNewUrlParser: true }, function(err, database) {
     if(err) {
         return console.log(err);
     }
+    // Here, "mydb" is our database in MongoDB, you can change it to your database
     db = database.db("mydb");
-    //var dbo = db.db("mydb");
 
     // start the express web server listening on 8080
     app.listen(8080, () => {
@@ -58,13 +40,12 @@ MongoClient.connect(url, { useNewUrlParser: true }, function(err, database) {
     });
 });
 
-
-
 // serve the homepage
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
 });
 
+// while going to map page, serveur get data from collection MongoDB and send it to client
 app.get('/map', (req, res) => {
     console.log(req.query);
 
@@ -73,7 +54,7 @@ app.get('/map', (req, res) => {
         if (err) return console.log(err);
         //console.log(result);
         if (result != null) {
-            //console.log(typeof result[0].properties.vicinity);
+            // send data to client
             res.send(result);
         }
     });

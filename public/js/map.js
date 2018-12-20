@@ -4,68 +4,115 @@
 
 
 {
-    console.log('Client-side code running');
-
+    // Loading bar
     var words = ["LOADING", "SUSHI", "FRIENDS", "TACOS", "RESTAURANT", "INDIAN", "ARABIAN", "LYON", "LOCAL", "FOOD", "DRINKS", "ME", "YOU"];
 
     window.addEventListener("load", function() {
+
         var randoms = window.document.getElementsByClassName("randoms");
+
         for (i = 0; i < randoms.length; i++)
+
             changeWord(randoms[i]);
+
     }, false);
 
     function changeWord(a) {
+
         a.style.opacity = '0.1';
+
         a.innerHTML = words[getRandomInt(0, words.length - 1)];
+
         setTimeout(function() {
+
             a.style.opacity = '1';
+
         }, 425);
+
         setTimeout(function() {
+
             changeWord(a);
+
         }, getRandomInt(500, 800));
     }
 
-
     function getRandomInt(min, max) {
+
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
+    // Get data which was sent to client by serveur NodeJS (data get from MongoDB by server.js)
     setTimeout(function(){
+
         fetch('/map', {method: 'GET'})
+
             .then(function(response) {
+
                 if(response.ok) return response.text();
+
                 throw new Error('Request failed.');
+
             })
+
             .then(function(data) {
-                //console.log(data);
+
                 geoJsonSource = data;
+
                 geoJsonSource = geoJsonSource.substr(1).slice(0, -1);
+
                 geoJsonSourceParsed = JSON.parse(geoJsonSource);
+
+                // remove loader background
                 document.getElementsByClassName("loaderBackground")[0].remove();
+
+                // initializes the map and all the event listeners on interactive elements
                 init();
+
                 document.getElementById("sidebarCollapse").style.display = "inline-block";
+
                 document.getElementById("sidebarCollapse").classList.add("open");
+
                 document.getElementById("sidebar").classList.add("active");
+
                 history.pushState(null, '', '/map.html');
+
             })
+
             .catch(function(error) {
+
                 console.log(error);
+
             });
+
     }, 2000);
 
-
     // Get filter values from map.html
-    var filterData = [];
-    console.log(data);
-    for (var i=0;i<data.length;i++){
-        var array = data[i].split(',');
-        filterData.push(array);
+
+    if (data == ""){
+
+        filterHomepage = false;
+
+    } else {
+
+        var filterData = [];        // data for filter get from homepage
+
+        for (var i=0;i<data.length;i++){
+
+            var array = data[i].split(',');
+
+            filterData.push(array);
+
+        }
+
+        console.log(filterData);
+
+        filterHomepage = true;
     }
-    console.log(filterData);
 
+
+    /*// Codes below, for the loading bar synchronized with XMLttpRequest, are used in version of 2017-2018
     // Creation of a loader icon
-
-    /*var loaderBackground = document.createElement("div");
+    var loaderBackground = document.createElement("div");
 
     loaderBackground.classList.add("loaderBackground");
 
@@ -113,17 +160,18 @@
 
         }
 
-    }*/
+    }
 
     //xobj.send(null);*/
 }
+
 
 /**
  * Sets attributes of the progress-bar.
  *
  * @param progress A percentage
  */
-function loader(progress) {
+/*function loader(progress) {
 
     var loaded = progress.loaded;
 
@@ -137,9 +185,7 @@ function loader(progress) {
 
     $(".progress-bar")[0].innerText = value + " %";
 
-    //console.log(progress);
-
-}
+}*/
 
 //######################################################################################################################
 //######################## GLOBAL VARIABLES ############################################################################
@@ -153,11 +199,17 @@ var accentMap = {
 var dayMap = {
 
     "lundi" : "Monday",
+
     "mardi" : "Tuesday",
+
     "mercredi" : "Wednesday",
+
     "jeudi" : "Thursday",
+
     "vendredi" : "Friday",
+
     "samedi" : "Saturday" ,
+
     "dimanche" : "Sunday"
 
 };
@@ -226,7 +278,7 @@ var geoJsonSource;          // GeoJson source of the project, get from mongodb
 
 var geoJsonSourceParsed;        // GeoJson source after JSON.parse
 
-var firstTime               // Variable to know if first time initialisation map
+var filterHomepage; // Boolean to know if there is filter for data get from homepage
 
 var forcedDate = null;
 
@@ -262,9 +314,13 @@ var userPositionMarker;     // Marker associated with user's location
 
 var style = 'basic';        // Get the current style of map
 
-var setClusters = true;     // Choose between points or clusters
+var setClusters = true;     // Choose between points or clusters or heat
 
-var setHeat = false;
+var setPoints = false;      // Choose between points or clusters or heat
+
+var setHeat = false;        // Choose between points or clusters or heat
+
+var subtypes =[];
 
 var icon = "homeIcon";      // Points of clusters of colored points
 
@@ -272,11 +328,11 @@ var overlap = true;         // For text overlap
 
 var markersTitleColor = "#000000";
 
-var barColor = "#3FB4E2";
+var barColor = "#C12C2C";
 
-var restaurantColor = "#C14343";
+var restaurantColor = "#339EFA";
 
-var barRestaurantColor = "#FFF5A0";
+var barRestaurantColor = "#FFEF7C";
 
 var iconImage = "homeIconBlack";
 
@@ -285,114 +341,206 @@ var legend = document.getElementById("legend");
 var smallLegend = document.getElementById("smallLegend");
 
 var pointLayer = ({
+
     id: "placesSymbolsP",
+
     type: "circle",
+
     source: "places2",
+
     paint: {
+
         "circle-color": [
+
             "match",
+
             ["get", "mainType"],
+
             "Bar", barColor,
+
             "Restaurant", restaurantColor,
+
             "Bar-restaurant", barRestaurantColor,
+
             "Bar-Restaurant", barRestaurantColor,
+
             '#000000'
+
         ]
+
     }
+
 });
 
 var heatLayer = ({
+
     "id": "heat",
+
     "type": "heatmap",
+
     "source": "places2",
+
     "maxzoom": 15,
+
     "paint": {
+
         // increase weight as diameter breast height increases
         "heatmap-weight": 0.8,
+
         // increase intensity as zoom level increases
         "heatmap-intensity": 0.9,
+
         // use sequential color palette to use exponentially as the weight increases
         "heatmap-color": [
+
             "interpolate",
+
             ["linear"],
+
             ["heatmap-density"],
+
             0, "rgba(0,0,255,0)",
+
             0.1, "rgb(65,105,225)",
+
             0.3, "rgb(0,255,255)",
+
             0.5, "rgb(0,200,255)",
+
             0.7, "rgb(255,191,31)",
+
             1, "rgb(255,68,0)",
+
         ],
+
         // increase radius as zoom increases
+
         "heatmap-radius": 15,
+
         "heatmap-opacity": {
+
             "default": 1,
+
             "stops": [
+
                 [14, 1],
+
                 [15, 0]
+
             ]
+
         },
+
     }
+
 });
 
 var clusterPlacesSymbols = ({
+
     id: "placesSymbols",
+
     type: "symbol",
+
     source: "places",
+
     layout: {
         "text-field": "{name}",
+
         "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+
         "text-offset": [0, 0.6],
+
         "text-anchor": "top",
+
         "icon-image": iconImage,
+
         "icon-size": 0.05,
+
         "visibility": 'visible',
+
         "icon-allow-overlap": true,
+
         "text-allow-overlap": overlap
     },
+
     paint: {
         "text-halo-color": "rgba(0,0,0,1)",
+
         "text-color": markersTitleColor
+
     }
+
 });
 
 var clusterLayer = ({
+
     id: "clusters",
+
     type: "circle",
+
     source: "places",
+
     filter: ["has", "point_count"],
+
     paint: {
+
         "circle-color": [
+
             "step",
+
             ["get", "point_count"],
-            "#3FB4E2",
+
+            "#339EFA",
+
             100,
-            "#FFF5A0",
+
+            "#FFEF7C",
+
             750,
-            "#C14343"
+
+            "#C12C2C"
+
         ],
+
         "circle-radius": [
+
             "step",
+
             ["get", "point_count"],
+
             20,
+
             100,
+
             30,
+
             750,
+
             40
         ]
     }
 });
 
 var clusterCountLayer = ({
+
     id: "cluster-count",
+
     type: "symbol",
+
     source: "places",
+
     filter: ["has", "point_count"],
+
     layout: {
+
         "text-field": "{point_count_abbreviated}",
+
         "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+
         "text-size": 13
+
     }
+
 });
 
 /**
@@ -401,29 +549,34 @@ var clusterCountLayer = ({
 function init() {
 
     // Mapbox generation with API key authentication
-    map = mapInitialisation(userCoordinates,1);
 
-    /*~
-    var options = {
-        enableHighAccuracy: true
-    };
-*/
+    map = mapInitialisation(userCoordinates);
+
     // Update user's location
 
-    //~navigator.geolocation.getCurrentPosition(locationUpdate, null, options);
     getUserLocation();
-
-    //filterFromHomePage();
 
     // Buttons interactions
 
     var goButton = document.getElementById("btn-filter");
 
-    goButton.addEventListener("click", filterMap);
+    goButton.addEventListener("click", function(){
+
+        filterHomepage = false;
+
+        filterMap();
+
+    });
 
     var resetButton = document.getElementById("resetFilters");
 
-    resetButton.addEventListener("click", resetFilter);
+    resetButton.addEventListener("click", function (){
+
+        filterHomepage = false;
+
+        resetFilter();
+
+    });
 
 
     var searchTextField = document.getElementById("search");
@@ -443,13 +596,17 @@ function init() {
 
     searchTextButton.addEventListener("click", function () {
 
-        filterSearch(searchTextField.value);
+        filterHomepage = false;
+
+        filterMap();
 
     });
 
     window.addEventListener("keyup", function (key) {
 
         if (key.keyCode === 27) {
+
+            filterHomepage = false;
 
             searchTextField.value = "";
 
@@ -463,7 +620,9 @@ function init() {
 
         if (key.keyCode === 13) {
 
-            filterSearch(searchTextField.value);
+            filterHomepage = false;
+
+            filterMap();
 
         }
 
@@ -472,14 +631,21 @@ function init() {
     // Style selection map
     var selectedStyle = "";
 
-    $(".btnStyle").on("click", function () {
+    var styleButtons = document.getElementsByClassName("btnStyle");
 
-        selectedStyle = $(this).attr('id');
+    for (var i=0;i<styleButtons.length;i++) {
 
-        console.log(selectedStyle);
+        styleButtons[i].addEventListener("click", function () {
 
-        changeStyle(selectedStyle);
-    });
+            selectedStyle = $(this).attr('id');
+
+            console.log(selectedStyle);
+
+            changeStyle(selectedStyle);
+
+        });
+
+    }
 
     // Points or clusters choice
     var point = document.getElementById("viewPoints");
@@ -488,11 +654,13 @@ function init() {
 
     var heat = document.getElementById("viewHeat");
 
-    console.log(heat);
-
     cluster.addEventListener("click", function() {
 
         setClusters = true;
+
+        setHeat = false;
+
+        setPoints = false;
 
         icon = "homeIcon";
 
@@ -521,6 +689,10 @@ function init() {
         //displayHeat();
 
         setClusters = false;
+
+        setPoints = true;
+
+        setHeat = false;
 
         icon = "";
 
@@ -565,8 +737,11 @@ function init() {
         for (var i = 0 ; i < circles.length ; i++) {
 
             circles[i].style.width = "10px";
+
             circles[i].style.height = "10px";
+
             circles[i].style.borderRadius = "5px";
+
             circles[i].style.float = "left";
 
             if (i === 0) {
@@ -590,6 +765,10 @@ function init() {
 
         setClusters = false;
 
+        setPoints = false;
+
+        setHeat = true;
+
         icon = "";
 
         overlap = true;
@@ -612,17 +791,15 @@ function init() {
 
     });
 
-
-
 }
 
 /**
  * Initializes a map with passed coordinates and set the map interactions.
  *
- * @param userCoordinates Actual coordinates of user
+ * @param userCoordinates Actual coordinates of user, firstTime To know if this is the first time loading map page
  * @returns A Mapbox's map object
  */
-function mapInitialisation(userCoordinates, firstTime) {
+function mapInitialisation(userCoordinates) {
 
     mapboxgl.accessToken = 'pk.eyJ1IjoibWFnaXJsMjMiLCJhIjoiY2pvbGVydWkyMG5ydjN1cGp1NDR6ODVsdiJ9.Xp7CrSuBHDXYc3C8NMSxDg';
 
@@ -652,7 +829,9 @@ function mapInitialisation(userCoordinates, firstTime) {
 
     // Adding map controls
     map.addControl(new mapboxgl.NavigationControl({
+
         "showCompass" : true
+
     }), 'bottom-right');
 
     // Disable map rotation using right click + drag
@@ -667,20 +846,33 @@ function mapInitialisation(userCoordinates, firstTime) {
     map.on('load', function (element) {
 
         map.addSource('places', {
+
             type: "geojson",
+
             data: geoJsonSourceParsed,
-            cluster: setClusters,
+
+            cluster: true,
+
             clusterMaxZoom: 16, // Max zoom to cluster points on
+
             clusterRadius: 75 // Radius of each cluster when clustering points (defaults to 50)
+
         });
 
         map.addSource("places2", {
+
             type: "geojson",
+
             data: geoJsonSourceParsed,
+
             cluster: false,
+
             clusterMaxZoom: 16, // Max zoom to cluster points on
+
             clusterRadius: 75, // Radius of each cluster when clustering points (defaults to 50)
+
             //visibility: 'none'
+
         });
 
         map.loadImage('Assets/homeIconWhite.png', function (error, image) {
@@ -695,111 +887,66 @@ function mapInitialisation(userCoordinates, firstTime) {
 
         });
 
-        /*if (setClusters === false) {
-
-            map.addLayer({
-                id: "placesSymbols",
-                type: "circle",
-                source: "places",
-                paint: {
-                    //"circle-radius":5,
-                    //"circle-color":'#' + (Math.random().toString(16) + "000000").substring(2,8)
-                    "circle-color": [
-                        "match",
-                        ["get", "mainType"],
-                        "Bar", barColor,
-                        "Restaurant", restaurantColor,
-                        "Bar-restaurant", barRestaurantColor,
-                        "Bar-Restaurant", barRestaurantColor,
-                        '#000000'
-                   ]
-                }
-            });
-
-        } else {
-
-            map.addLayer({
-                id: "placesSymbols",
-                type: "symbol",
-                source: "places",
-                layout: {
-                    "text-field": "{name}",
-                    "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                    "text-offset": [0, 0.6],
-                    "text-anchor": "top",
-                    "icon-image": iconImage,
-                    "icon-size": 0.05,
-                    "visibility": 'visible',
-                    "icon-allow-overlap": true,
-                    "text-allow-overlap": overlap
-                },
-                paint: {
-                    "text-halo-color": "rgba(0,0,0,1)",
-                    "text-color" : markersTitleColor
-                }
-            });
-
-            map.addLayer({
-                id: "clusters",
-                type: "circle",
-                source: "places",
-                filter: ["has", "point_count"],
-                paint: {
-                    "circle-color": [
-                        "step",
-                        ["get", "point_count"],
-                        "#3b85ce",
-                        100,
-                        "#44ff4e",
-                        750,
-                        "#f90431"
-                   ],
-                    "circle-radius": [
-                        "step",
-                        ["get", "point_count"],
-                        20,
-                        100,
-                        30,
-                        750,
-                        40
-                   ]
-                }
-            });
-
-            map.addLayer({
-                id: "cluster-count",
-                type: "symbol",
-                source: "places",
-                filter: ["has", "point_count"],
-                layout: {
-                    "text-field": "{point_count_abbreviated}",
-                    "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
-                    "text-size": 13
-                }
-            });
-
-        }
-
-    });*/
-
+        // Adding display layer
         map.addLayer(clusterPlacesSymbols);
+
         map.addLayer(clusterLayer);
-        map.addLayer(clusterCountLayer)
+
+        map.addLayer(clusterCountLayer);
+
         map.addLayer(pointLayer);
+
         map.addLayer(heatLayer);
 
-        map.setLayoutProperty("placesSymbols", 'visibility', 'visible');
-        map.setLayoutProperty("clusters", 'visibility', 'visible');
-        map.setLayoutProperty("cluster-count", 'visibility', 'visible');
-        map.setLayoutProperty("placesSymbolsP", 'visibility', 'none');
-        map.setLayoutProperty("heat", 'visibility', 'none');
+        // Set layout
+        if (setClusters) {
 
-        //filter with values get from home page, just do one time when charging this page
-        if (firstTime == 1) {
-            filterFromHomePage();
+            map.setLayoutProperty("placesSymbols", 'visibility', 'visible');
+
+            map.setLayoutProperty("clusters", 'visibility', 'visible');
+
+            map.setLayoutProperty("cluster-count", 'visibility', 'visible');
+
+            map.setLayoutProperty("placesSymbolsP", 'visibility', 'none');
+
+            map.setLayoutProperty("heat", 'visibility', 'none');
+        }
+        if (setPoints) {
+
+            map.setLayoutProperty("placesSymbols", 'visibility', 'none');
+
+            map.setLayoutProperty("clusters", 'visibility', 'none');
+
+            map.setLayoutProperty("cluster-count", 'visibility', 'none');
+
+            map.setLayoutProperty("placesSymbolsP", 'visibility', 'visible');
+
+            map.setLayoutProperty("heat", 'visibility', 'none');
+        }
+        if (setHeat) {
+
+            map.setLayoutProperty("placesSymbols", 'visibility', 'none');
+
+            map.setLayoutProperty("clusters", 'visibility', 'none');
+
+            map.setLayoutProperty("cluster-count", 'visibility', 'none');
+
+            map.setLayoutProperty("placesSymbolsP", 'visibility', 'none');
+
+            map.setLayoutProperty("heat", 'visibility', 'visible');
         }
 
+        //filter with values get from home page, just do one time when charging this page
+        /*if (firstTime == 1) {
+
+            filterFromHomePage();
+
+        }else{*/
+
         filterMap();
+
+
+
     });
 
     map.on('click', function (element) {
@@ -832,7 +979,6 @@ function mapInitialisation(userCoordinates, firstTime) {
             var popup = new mapboxgl.Popup();
 
             popup = createPopupForSymbol(feature);
-
 
             createInfoContentHTML(feature.properties);
 
@@ -986,22 +1132,38 @@ function mapInitialisation(userCoordinates, firstTime) {
 
     // Adding and remove direction control in map
     var mapbox_ctrl_top_right = document.getElementsByClassName("mapboxgl-ctrl-top-right")[0];
+
     var navigationButton = "<button type='button' id='navigationButton'><i class='material-icons' style='margin-top:2px!important;color:rgb(0,0,0)'>directions</i></button>";
+
     document.getElementsByClassName('mapboxgl-ctrl-group')[0].insertAdjacentHTML('beforeend', navigationButton);
+
     var controlDirection = new MapboxDirections({
+
         accessToken: mapboxgl.accessToken,
+
         steps: true,
+
         voice_instructions: true,
+
     });
+
     document.getElementById('navigationButton').onclick = function(){
+
         if (!mapbox_ctrl_top_right.hasChildNodes()){
+
             map.addControl(controlDirection, 'top-right');
+
             openDirectionControl();
+
         }
         else if (mapbox_ctrl_top_right.hasChildNodes()){
+
             map.removeControl(controlDirection);
+
             mapbox_ctrl_top_right.html = "";
+
         }
+
     };
 
     return map;
@@ -1608,9 +1770,9 @@ function changeStyle(input) {
 
     }
 
-    //map.remove();
+    map.remove();
 
-    mapInitialisation(userCoordinates,0);
+    mapInitialisation(userCoordinates);
 
 }
 
@@ -1623,50 +1785,7 @@ function changeStyle(input) {
  */
 function filterMap() {
 
-    //var restaurantButton = document.getElementById("restaurantButton");
-
-    //var barButton = document.getElementById("barButton");
-
-    //var barRestaurantButton = document.getElementById("barRestaurantButton");
-
-    //var typeButtons = [restaurantButton, barButton, barRestaurantButton];
-
-    var selected_main_types = $('#mainType').val();
-
-    var selected_sub_types = $('#subType').val();
-
-    var selected_locations = $('#location').val();
-
-    var priceButton1 = document.getElementById("price1");
-
-    var priceButton2 = document.getElementById("price2");
-
-    var priceButton3 = document.getElementById("price3");
-
-    var priceButton4 = document.getElementById("price4");
-
-    var priceButtons = [priceButton1, priceButton2, priceButton3, priceButton4];
-
-    var starButton1 = document.getElementById("star1");
-
-    var starButton2 = document.getElementById("star2");
-
-    var starButton3 = document.getElementById("star3");
-
-    var starButton4 = document.getElementById("star4");
-
-    var starButton5 = document.getElementById("star5");
-
-
-    var starButtons = [starButton1, starButton2, starButton3, starButton4, starButton5];
-
-    var openTime = $('#datetimepicker-secondSidebar').val();
-
-    console.log(openTime);
-
-    var searchString = $('#search').val();
-
-    console.log(searchString);
+    console.log(filterHomepage);
 
     var filter = {
 
@@ -1706,309 +1825,272 @@ function filterMap() {
 
     };
 
-    //~ console.log(filter);
+    if (filterHomepage == true){
 
-    var i;
+        //Get values to filter from filterData
+        //filterData[0] => location
+        //filterData[1] => price
+        //filterData[2] => rating
+        //filterData[3] => maintype
+        //filterData[4] => subtype
+        //filterData[5] => date and time
+        var selected_locations = filterData[0];
+        //console.log(selected_locations);
 
-    if (selected_locations[0] !== "" ) {
+        var selected_prices = filterData[1];
+        //console.log(selected_prices);
 
-        if (selected_locations[0] === "Around me") {
+        var selected_ratings = filterData[2];
+        //console.log(selected_ratings);
 
-            filter.aroundMe = true;
+        var selected_main_types = filterData[3];
+        //console.log(selected_main_types);
 
-        } else {
+        var selected_sub_types = filterData[4];
+        //console.log(selected_sub_types);
 
-            for (i = 0; i < selected_locations.length; i++) {
+        //Format Open Time
+        var openTime = filterData[5];
+        //console.log(openTime);
 
-                filter.location.push(selected_locations[i]);
+        //Search value
+        var searchString = filterData[6];
+
+        var i;
+
+        var j;
+
+        /* Location */
+        if (selected_locations[0] !== "" ) {
+
+            if (selected_locations[0] === "Around me"){
+
+                filter.aroundMe = true;
+
+            } else {
+
+                for (i = 0; i < selected_locations.length; i++) {
+
+                    filter.location.push(selected_locations[i]);
+
+                }
 
                 filter.filteringLocation = true;
+
             }
         }
-    }
+        /* Prices */
+        if (selected_prices[0] !== "" ) {
+            for (i = 0; i < selected_prices.length; i++) {
 
-    for (i = 0 ; i < priceButtons.length; i++) {
+                var total = 0;
 
-        if (priceButtons[i].checked == true) {
+                for (j = 0; j < selected_prices[i].length; j++) {
 
-            filter.price.push(i + 1);
+                    if (selected_prices[i][j] === "$") total = total + 1;
 
-            filter.filteringPrices = true;
+                }
 
+                filter.price.push(total);
+
+                filter.filteringPrices = true;
+            }
         }
 
-    }
+        /* Rating */
+        if (selected_ratings[0] !== "") {
+            for (i = 0; i < selected_ratings.length; i++) {
 
-    for (i = 0; i < starButtons.length; i++) {
-        if (starButtons[i].checked==true) {
-            filter.rating.push(i + 1);
-            filter.filteringRating = true;
+                var total = 0;
+
+                for (j = 0; j < selected_ratings[i].length; j++) {
+
+                    if (selected_ratings[i][j] === "*") total = total + 1;
+
+                }
+
+                filter.rating.push(total);
+
+                filter.filteringRating = true;
+            }
         }
 
-    }
+        /* MainType */
+        if (selected_main_types[0] !== ""){
+            for (i = 0; i < selected_main_types.length; i++) {
 
-    if (selected_main_types[0] !== ""){
-        for (i = 0; i < selected_main_types.length; i++) {
+                filter.maintypes.push(selected_main_types[i]);
 
-            filter.maintypes.push(selected_main_types[i]);
-
-            filter.filteringMainTypes = true;
+                filter.filteringMainTypes = true;
+            }
         }
-    }
 
-    if (selected_sub_types[0] !== ""){
-        for (i = 0; i < selected_sub_types.length; i++) {
+        /* SubType */
+        if (selected_sub_types[0] !== ""){
+            for (i = 0; i < selected_sub_types.length; i++) {
 
-            filter.subtypes.push(selected_sub_types[i]);
+                filter.subtypes.push(selected_sub_types[i]);
 
-            filter.filteringSubTypes = true;
+                filter.filteringSubTypes = true;
+            }
         }
-    }
 
-    /*filter.aroundMe = aroundMeButton.checked;
+        /* Date and time */
+        if (openTime[0] !== "") {
 
-    filter.opened = openedNowButton.checked;
+            var str = new String(openTime);
 
-    if (openingHoursInput.value.length !== 0) {
+            var split_time = str.split('  ');
 
-        filter.openingHours = openingHoursInput.value;
+            filter.openingDay = split_time[0];
 
-        filter.opened = false;
+            var str2 = split_time[1].split(':');
 
-    }
+            var time = str2[0] + str2[1];
 
-    if (dayInput.value != -1) {
+            filter.openingHours = time;
+        }
 
-        filter.openedDay = dayInput.value;
+        if (searchString !== null){
+            filter.filteringSearch = true;
+            for (i = 0; i < searchString.length; i++) {
 
-        filter.opened = false;
+                filter.searchString.push(searchString[i]);
 
-    }*/
+            }
+        }
 
-    /* Date and time */
+    } else {
 
-    if (openTime[0] !== undefined) {
-        var str = new String(openTime);
-        var split_time = str.split('  ');
-        console.log(split_time);
-        filter.openingDay = split_time[0];
+        var selected_main_types = $('#mainType').val();
 
-        var str2 = split_time[1].split(':');
-        var time = str2[0] + str2[1];
-        filter.openingHours = time;
-    }
+        var selected_sub_types = $('#subType').val();
 
-    if (searchString !== null){
+        var selected_locations = $('#location').val();
 
-        filter.filteringSearch = true;
+        var priceButton1 = document.getElementById("price1");
 
-        filter.searchString.push(searchString);
-    }
+        var priceButton2 = document.getElementById("price2");
 
-    console.log(filter);
+        var priceButton3 = document.getElementById("price3");
 
-    //console.log(JSON.parse(geoJsonSource));
+        var priceButton4 = document.getElementById("price4");
 
-    filterFunction(filter);
+        var priceButtons = [priceButton1, priceButton2, priceButton3, priceButton4];
 
-    //getTimeInput();
+        var starButton1 = document.getElementById("star1");
 
-}
+        var starButton2 = document.getElementById("star2");
 
-/**
- * Prepares a filter object based on values selected in the filter menu from home page, then call filterFunction(filter).
- */
-function filterFromHomePage() {
+        var starButton3 = document.getElementById("star3");
 
-    //Get values to filter from filterData
-    //filterData[0] => location
-    //filterData[1] => price
-    //filterData[2] => rating
-    //filterData[3] => maintype
-    //filterData[4] => subtype
-    //filterData[5] => date and time
-    var selected_locations = filterData[0];
-    //console.log(selected_locations);
+        var starButton4 = document.getElementById("star4");
 
-    var selected_prices = filterData[1];
-    //console.log(selected_prices);
+        var starButton5 = document.getElementById("star5");
 
-    var selected_ratings = filterData[2];
-    //console.log(selected_ratings);
+        var starButtons = [starButton1, starButton2, starButton3, starButton4, starButton5];
 
-    var selected_main_types = filterData[3];
-    //console.log(selected_main_types);
+        var openTime = $('#datetimepicker-secondSidebar').val();
 
-    var selected_sub_types = filterData[4];
-    //console.log(selected_sub_types);
+        var searchString = $('#search').val();
 
-    //Format Open Time
-    var openTime = filterData[5];
-    //console.log(openTime);
+        var i;
 
-    //Search value
-    var searchString = filterData[6];
+        if (selected_locations[0] !== "" ) {
 
-    /*var datetime = new Date(openTime);
-    var year = datetime.getFullYear();
-    var month = datetime.getMonth()+1;
-    var day = datetime.getDate();
-    var date = day + "/" + month + "/" + year;
+            if (selected_locations[0] === "Around me") {
 
-    var hour = datetime.getHours();
-    var minute = datetime.getMinutes();
-    var hourFormatted = hour < 10 ? "0" + hour : hour;
-    var minuteFormatted = minute < 10 ? "0" + minute : minute;
-    var time = hourFormatted + ":" + minuteFormatted;*/
+                filter.aroundMe = true;
 
+            } else {
 
-    var filter = {
+                for (i = 0; i < selected_locations.length; i++) {
 
-        filteringSearch: false,
+                    filter.location.push(selected_locations[i]);
 
-        searchString: [],
+                    filter.filteringLocation = true;
+                }
+            }
+        }
 
-        filteringLocation: false,
+        for (i = 0 ; i < priceButtons.length; i++) {
 
-        aroundMe: false,
+            if (priceButtons[i].checked == true) {
 
-        location: [],
+                filter.price.push(i + 1);
 
-        filteringPrices : false,
-
-        price: [],
-
-        filteringRating:false,
-
-        rating: [],
-
-        filteringMainTypes : false,
-
-        maintypes: [],
-
-        filteringSubTypes : false,
-
-        subtypes: [],
-
-        filteringTime : false,
-
-        filteringDateTime: false,
-
-        openingHours: null,
-
-        openingDay: null
-
-    };
-
-    //~ console.log(filter);
-
-    var i;
-
-    var j;
-
-    /* Location */
-    if (selected_locations[0] !== "" ) {
-
-        if (selected_locations[0] === "Around me"){
-
-            filter.aroundMe = true;
-
-        } else {
-
-            for (i = 0; i < selected_locations.length; i++) {
-
-                filter.location.push(selected_locations[i]);
+                filter.filteringPrices = true;
 
             }
 
-            filter.filteringLocation = true;
-
         }
-    }
-    /* Prices */
-    if (selected_prices[0] !== "" ) {
-        for (i = 0; i < selected_prices.length; i++) {
 
-            var total = 0;
+        for (i = 0; i < starButtons.length; i++) {
 
-            for (j = 0; j < selected_prices[i].length; j++) {
+            if (starButtons[i].checked==true) {
 
-                if (selected_prices[i][j] === "$") total = total + 1;
+                filter.rating.push(i + 1);
 
+                filter.filteringRating = true;
             }
 
-            filter.price.push(total);
-
-            filter.filteringPrices = true;
         }
-    }
 
-    /* Rating */
-    if (selected_ratings[0] !== "") {
-        for (i = 0; i < selected_ratings.length; i++) {
+        if (selected_main_types[0] !== ""){
 
-            var total = 0;
+            for (i = 0; i < selected_main_types.length; i++) {
 
-            for (j = 0; j < selected_ratings[i].length; j++) {
+                filter.maintypes.push(selected_main_types[i]);
 
-                if (selected_ratings[i][j] === "*") total = total + 1;
-
+                filter.filteringMainTypes = true;
             }
-
-            filter.rating.push(total);
-
-            filter.filteringRating = true;
         }
-    }
 
-    /* MainType */
-    if (selected_main_types[0] !== ""){
-        for (i = 0; i < selected_main_types.length; i++) {
+        if (selected_sub_types[0] !== ""){
 
-            filter.maintypes.push(selected_main_types[i]);
+            for (i = 0; i < selected_sub_types.length; i++) {
 
-            filter.filteringMainTypes = true;
+                filter.subtypes.push(selected_sub_types[i]);
+
+                filter.filteringSubTypes = true;
+            }
         }
-    }
 
-    /* SubType */
-    if (selected_sub_types[0] !== ""){
-        for (i = 0; i < selected_sub_types.length; i++) {
+        /* Date and time */
 
-            filter.subtypes.push(selected_sub_types[i]);
+        if (openTime[0] !== undefined) {
 
-            filter.filteringSubTypes = true;
-        }
-    }
+            var str = new String(openTime);
 
-    /* Date and time */
-    if (openTime[0] !== "") {
-        var str = new String(openTime);
-        var split_time = str.split('  ');
-        console.log(split_time);
-        filter.openingDay = split_time[0];
+            var split_time = str.split('  ');
 
-        var str2 = split_time[1].split(':');
-        var time = str2[0] + str2[1];
-        filter.openingHours = time;
-    }
+            console.log(split_time);
 
-    if (searchString !== null){
-        filter.filteringSearch = true;
-        for (i = 0; i < searchString.length; i++) {
+            filter.openingDay = split_time[0];
 
-            filter.searchString.push(searchString[i]);
+            var str2 = split_time[1].split(':');
+
+            var time = str2[0] + str2[1];
+
+            filter.openingHours = time;
 
         }
+
+        if (searchString !== null){
+
+            filter.filteringSearch = true;
+
+            filter.searchString.push(searchString);
+        }
+
     }
 
     console.log(filter);
 
     filterFunction(filter);
 
-    //getTimeInput();
-
 }
+
 /**
  * Applies a filter to the geoJsonSource property based on the passed filter's properties.
  * If only one object is left after filtering, we fly and zoom to it in the map.
@@ -2024,8 +2106,6 @@ function filterFunction(filter) {
     //console.log(geoJsonSourceParsed);
 
     var filteredGeoJson = JSON.parse(geoJsonSource);
-
-    //console.log(filteredGeoJson);
 
     var features = filteredGeoJson.features;
 

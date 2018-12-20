@@ -37,9 +37,7 @@ body {
 }
 
 .loaderBackground {
-    background: #053d4e;
-
-    background: linear-gradient( to bottom right, #C9C17A,  #053D4E);
+    background: linear-gradient( to bottom right, #C12C2C,#339EFA);
 
 	height: 100%;
 
@@ -75,7 +73,7 @@ body {
 	margin-top: 40px;
 }
 
-h1,
+.loading h1,
 h4 {
 	-webkit-transition: opacity .25s;
 	-moz-transition: opacity .25s;
@@ -85,19 +83,19 @@ h4 {
 	font-family: "FARCRY", Verdana, Tahoma;
 }
 
-h1 {
+.loading h1 {
 	font-size: 6vw;
 }
 
-h4 {
+.loading h4 {
 	font-size: 3vw;
 }
 
-h4:first-child {
+.loading h4:first-child {
 	margin-bottom: -2vw;
 }
 
-h4:last-child {
+.loading h4:last-child {
 	margin-top: -1.7vw;
 }*/
 
