@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3c163e6e-2b80-4098-8af5-a8a562882b3c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restoMap2-master/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/restoMap2-master/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,7 +38,7 @@
           <entry key="html" value="8" />
           <entry key="js" value="23" />
           <entry key="json" value="16" />
-          <entry key="md" value="3" />
+          <entry key="md" value="4" />
           <entry key="php" value="3" />
           <entry key="t" value="2" />
         </counts>
@@ -50,7 +49,7 @@
           <entry key="HTML" value="8" />
           <entry key="JSON" value="16" />
           <entry key="JavaScript" value="23" />
-          <entry key="Markdown" value="3" />
+          <entry key="Markdown" value="4" />
           <entry key="PHP" value="3" />
           <entry key="PLAIN_TEXT" value="18" />
         </counts>
@@ -80,12 +79,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/restoMap2-master/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="-119">
-                <caret line="21" column="57" lean-forward="true" selection-start-line="21" selection-start-column="57" selection-end-line="21" selection-end-column="57" />
+              <first_editor relative-caret-position="357">
+                <caret line="21" column="57" lean-forward="true" selection-end-line="91" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="658">
+                <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
               </first_editor>
               <second_editor />
             </state>
@@ -216,6 +227,7 @@
         <option value="$PROJECT_DIR$/public/map.html" />
         <option value="$PROJECT_DIR$/public/js/map.js" />
         <option value="$PROJECT_DIR$/restoMap2-master/README.md" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -282,12 +294,6 @@
               <item name="projet_nodejs" type="462c0819:PsiDirectoryNode" />
               <item name="restoMap2-master" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="projet_nodejs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet_nodejs" type="462c0819:PsiDirectoryNode" />
-              <item name="restoMap2-master" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -298,7 +304,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545343967462" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545344019273" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../nodejs_mongo" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -346,7 +352,7 @@
       <workItem from="1545090528161" duration="3011000" />
       <workItem from="1545121035319" duration="16090000" />
       <workItem from="1545318264704" duration="7084000" />
-      <workItem from="1545335766352" duration="8174000" />
+      <workItem from="1545335766352" duration="8227000" />
     </task>
     <task id="LOCAL-00001" summary="Il faut passer les JSON récupérés en server.js aux client-side .js">
       <created>1544460980441</created>
@@ -474,11 +480,18 @@
       <option name="project" value="LOCAL" />
       <updated>1545343799701</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Go...">
+      <created>1545343974614</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1545343974614</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102048000" />
+    <option name="totallyTimeSpent" value="102101000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -1208,8 +1221,18 @@
     <entry file="file://$PROJECT_DIR$/restoMap2-master/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-119">
-            <caret line="21" column="57" lean-forward="true" selection-start-line="21" selection-start-column="57" selection-end-line="21" selection-end-column="57" />
+          <first_editor relative-caret-position="357">
+            <caret line="21" column="57" lean-forward="true" selection-end-line="91" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="658">
+            <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
           </first_editor>
           <second_editor />
         </state>
