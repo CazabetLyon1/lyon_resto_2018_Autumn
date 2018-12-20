@@ -1,61 +1,73 @@
-# Interactive map of Lyon
+﻿# Resto's à Lyon!
 
-## Synopsis
-
-This project is an interactive map of Lyon with bars and restaurants. We can filter and search establishments. We also can personalize the view.
-
-## Getting Started
-
-### Prerequisites
-
-You need an Internet connection.
-
-### Installing
-
-You don't need to install anything !
-
-### Running the tests
-
-There is a debug mode for the data retrieve.
-
-### Data
-Example of place informations:
-```
-    {
-        formatted_address       : "["Metro Cuire (C)","69300 Caluire et Cuire","France"]",
-        formatted_phone_number  : "06 61 41 99 60",
-        geometry                : "{"location":{"lat":45.785595167419004,"lng":4.83302194434442}}",
-        mainType                : "Bar-Restaurant",
-        name                    : "Pitakia",
-        place_id                : "pitakia-caluire-et-cuire",
-        price                   : "€",
-        rating                  : 4,
-        scope                   : "YELP",
-        subtypes                : "[{"alias":"foodtrucks","title":"Food Trucks"},{"alias":"greek","title":"Greek"}]",
-        url                     : "https://www.yelp.com/biz/pitakia-caluire-et-cuire?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-        vicinity                : "Metro Cuire (C)"
-    }
-```
-### Built With
-
-* [Mapbox](https://www.mapbox.com/) - API for map
-* [Google Places](https://developers.google.com/places/) - API for data
-* [Yelp](https://www.yelp.com/) - second API for data
-* [Bootstrap](https://getbootstrap.com/) - Web framework
-* [JsDoc](http://usejsdoc.org/) - API documentation generator for JavaScript (generate JsDoc (at the root of the project) : jsdoc js -d=doc)
+This is a web site project **Resto's à Lyon!** developed during a subject of 3rd year "LIFPROJET"  at l’Université Claude Bernard Lyon 1.  The main idea is to put into practice our team knowledge but also make us explore new technoly and tools of Web programming. We continue this project which was started by our friends Nelly BARRET and Louis LE BRUN.
 
 
-### Versioning
+# Getting Started
 
-* [Git Kraken](https://www.gitkraken.com/) for versioning.  
+## Prerequisites
 
-### Authors
+You need an internet connection and also Node.js framework as well as MongoDB Databese installed on your computer.
 
-* Louis LE BRUN   p1422721
-* Nelly BARRET    p1507461
+- On Ubuntu
+ 1. To install Node.js :
+`sudo apt-get update`
+`sudo apt-get install nodejs npm`
+To install the needed modules in the project repository tap:
+`npm install mongo`
+`npm install express`
+2. To Install MongoDB 
+`sudo apt-get update`
+`sudo apt-get install -y mongodb-org`
 
-### License
+--------
+
+- On Mac
+1. First install [Homebrew ](https://brew.sh/)
+2. Then `brew install node`
+To install the needed modules in the project repository tap:
+ `npm install mongo`
+ `npm install express`
+3. To install MongoDB `brew install mongodb`
+
+-----
+
+`npm install`
+To start Mongo, open two Terminal tabs. 
+In the first one in order to initialize Mongo tap:
+-  `mongod`
+In the second one to start and open it tap:
+- `mongo`
+
+THEN, to import the geoJSON fail into your MongoDB you should tap into an open Terminal tab:
+`mongoimport --db NameOfDB  --collection NameOfCollection --file absolute_path_to_the_file.geojson`
+
+
+
+ ## Built with
+ - [MapBox](https://www.mapbox.com/) - API for map
+ - [Google Places](https://cloud.google.com/maps-platform/places/) - API for data
+ - [Bootstrap](https://getbootstrap.com/) - Web framework 
+ ## Versionning 
+ - [GitLab ](https://about.gitlab.com/) for versionning
+
+## Authors
+
+- Fall 2018:
+Andrew ALBERT
+François ROBERT
+Rodislav IVANOV
+Nguyen NGUYEN
+
+- Spring 2018:
+Nelly BARRET 
+Louis LE BRUN
+
+
+## License
 
 This project is licensed under copyright.
 
-COPYRIGHTS @ Nelly BARRET et Louis LE BRUN - LIFPROJET 2018
+COPYRIGHTS @ Andrew ALBERT, François ROBERT, Rodislav IVANOV, Nguyen NGUYEN, Nelly BARRET, Louis LE BRUN - LIFPROJET 2018
+
+
