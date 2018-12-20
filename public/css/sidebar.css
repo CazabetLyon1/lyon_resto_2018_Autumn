@@ -613,7 +613,7 @@ div[role="footer"] button{
     font-size: 15px;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
-    color:white;
+    color:#292c2f;
     border:2px solid var(--svg-color);
     border-radius:2px;
     margin-left: 5%;
@@ -627,7 +627,7 @@ div[role="footer"] button{
     font-size: 15px;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
-    color:white;
+    color:#292c2f;
     border:2px solid #C12C2C;
     border-radius:2px;
     margin:0;
