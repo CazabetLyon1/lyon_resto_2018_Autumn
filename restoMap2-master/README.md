@@ -4,15 +4,34 @@
 
 This project is an interactive map of Lyon with bars and restaurants. We can filter and search establishments. We also can personalize the view.
 
-## Getting Started
-
 ### Prerequisites
 
-You need an Internet connection.
+You need an internet connection and also Node.js framework as well as MongoDB Databese installed on your computer.
 
-### Installing
+You need to install MongoDB (https://docs.mongodb.com/manual/installation/) and NodeJS (https://nodejs.org/en/download/)
 
-You don't need to install anything !
+You can also install MongoDB Compass for a easier manage of your database in MongoDB
+
+## Getting Started
+
+First, you need to start MongoDB service:
+   * In Linux, with the command following `sudo service mongod stop`
+   * In Windows, you need to go to the directory where your MongoDB installed then type "mongod" or you can start this service in Task Manager
+
+Then , to import the GEOJSON file into your MongoDB you should tap into an open Terminal tab:
+`mongoimport --db NameOfDB  --collection NameOfCollection --file absolute_path_to_the_file.geojson`
+
+Second, go to directory of this project then type the command below in your command terminal:
+   
+   `node server.js`
+   
+During development this can become a pain. To make this process easier install nodemon, a tool that will monitor your code for changes and automatically restart the server when necessary. To install nodemon:
+
+  `npm install -g nodemon`
+
+You can then run nodemon server.js to run your server and have it reloaded when you make changes. 
+
+There is a example how NodeJS and MongoDB works (https://gist.github.com/aerrity/fd393e5511106420fba0c9602cc05d35) which, in our opinion, is simple to understand
 
 ### Running the tests
 
@@ -43,7 +62,7 @@ Example of place informations:
 * [Yelp](https://www.yelp.com/) - second API for data
 * [Bootstrap](https://getbootstrap.com/) - Web framework
 * [JsDoc](http://usejsdoc.org/) - API documentation generator for JavaScript (generate JsDoc (at the root of the project) : jsdoc js -d=doc)
-
+* [NodeJS](http://https://nodejs.org/en) - 
 
 ### Versioning
 
