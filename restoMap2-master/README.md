@@ -62,16 +62,24 @@ Example of place informations:
 * [Yelp](https://www.yelp.com/) - second API for data
 * [Bootstrap](https://getbootstrap.com/) - Web framework
 * [JsDoc](http://usejsdoc.org/) - API documentation generator for JavaScript (generate JsDoc (at the root of the project) : jsdoc js -d=doc)
-* [NodeJS](http://https://nodejs.org/en) - 
+* [NodeJS](http://https://nodejs.org/en) 
+* [MongoDB](https://www.mongodb.com/fr) 
+
 
 ### Versioning
 
 * [Git Kraken](https://www.gitkraken.com/) for versioning.  
 
 ### Authors
-
-* Louis LE BRUN   p1422721
-* Nelly BARRET    p1507461
+- Fall 2018:
+  * Andrew ALBERT
+  * François ROBERT
+  * Rodislav IVANOV
+  * Nguyen NGUYEN
+  
+- Spring 2018:
+  * Nelly BARRET
+  * Louis LE BRUN
 
 ### License
 
